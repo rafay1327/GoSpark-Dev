@@ -1,60 +1,51 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../config/db'); //sequelize instance
 
-module.exports = function(application, req, res){
 
 const Business = sequelize.define('Business', {
  
-    business_id: {
-    type: Sequelize.INTEGER,
-    defaultValue: function() {
-      return generateMyId()
+    // id: {
+    // type: Sequelize.INTEGER,
+    // autoIncrements: true,
+    // primaryKey: true,
+    // allowNull: false
+    // },
+    user_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false
     },
-    primaryKey: true
+    category_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false
     },
-    user_id: Sequelize.INTEGER,
-    category_id: Sequelize.INTEGER,
-    membership_id: Sequelize.INTEGER,
-    gallery_id: Sequelize.INTEGER,
-    name: Sequelize.String,
-    description: Sequelize.String,
-    contact_no: Sequelize.String,
-    facebook_url: Sequelize.String,
-    twitter_url: Sequelize.String,
-    linkedin_url: Sequelize.String,
-    website: Sequelize.String,
-    opening_days: Sequelize.String,
+    membership_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    gallery_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    name: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    description: Sequelize.STRING,
+    contact_no: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    facebook_url: Sequelize.STRING,
+    twitter_url: Sequelize.STRING,
+    linkedin_url: Sequelize.STRING,
+    website: Sequelize.STRING,
+    opening_days: Sequelize.STRING,
     timings: Sequelize.DATE,
-    created_at: Sequelize.DATE,
-    updated_at: Sequelize.DATE
-},
-    {
-      freezeTableName: true
+    createdAt: Sequelize.DATE,
+    updatedAt: Sequelize.DATE,
     }
+
 );
 
-// sequelize.sync()
-//   .then(() => Business.create({
-//     user_id: '1',
-//     category_id: '1',
-//     membership_id: '1',
-//     gallery_id: '1',
-//     name: 'Test Business',
-//     description: 'Test business desc',
-//     contact_no: '464652348',
-//     facebook_url: 'www.facebook.com',
-//     twitter_url: 'www.facebook.com',
-//     linkedin_url: 'www.facebook.com',
-//     website: 'www.facebook.com',
-//     opening_days: 'Mon, Tue , Thurs, Fri',
-//     timings: '9-5',
-//     created_at:'',
-//     updated_at: ''
-  
-//   }))
-//   .then(obj => {
-//     console.log(obj.toJSON() + 'object created');
-//   });
-
-};
-//FIX THIS ERROR
+ sequelize.sync();
+ module.exports = Business;

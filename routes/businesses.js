@@ -2,32 +2,25 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql2');
 var Business = require('../models/Business');
-var Sequelize = require('sequelize');
+
 
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "rafay",
-  database: "mydb"
+  database: "gosparkdb"
 });
 
 
 //Businesses
 router.route('/')
 .get(function(req, res, next) {
-
+  var business_all;
+  Business.findAll().then(function(businesses){
+    business_all = businesses;
+  }); 
   res.render('businesses/index', { title: "GoSpark | Businesses" });
-  con.query("SELECT * FROM mydb.businesses", function(error, rows, fields ){
-  	//call back function
-  	if (!!error){
-  		console.log('error in the query');
-
-  	}
-  	else {
-  		console.log('successful query!');
-  		console.log(rows);
-  	}
-  })
+  
 });
 
 router.route('/create')
@@ -36,16 +29,17 @@ router.route('/create')
 	res.render('businesses/create', {title: "GoSpark | Create Business"});
 
 })
-.post(function(req, res, next){
+ .post(function(req, res, next){
 
 
-	sequelize.sync()
+	Business.sync()
   .then(() => Business.create({
-    user_id: '1',
-    category_id: '1',
-    membership_id: '1',
-    gallery_id: '1',
-    name: 'Test Business',
+    
+    user_id: '2',
+    category_id: '2',
+    membership_id: '2',
+    gallery_id: '2',
+    name: 'Test Business 2',
     description: 'Test business desc',
     contact_no: '464652348',
     facebook_url: 'www.facebook.com',
@@ -53,29 +47,29 @@ router.route('/create')
     linkedin_url: 'www.facebook.com',
     website: 'www.facebook.com',
     opening_days: 'Mon, Tue , Thurs, Fri',
-    timings: '9-5',
-    created_at:'',
-    updated_at: ''
+    timings: '9-9',
+
   
-  }))
-  .then(obj => {
-    console.log(obj.toJSON());
-    console.log('created object');
+  })).then(business => {
+   res.send(business.toJSON());
   });
 
-	// con.query("SELECT * FROM mydb.businesses", function(error, rows, fields ){
- //  	//call back function
- //  	if (!!error){
- //  		console.log('error in the query');
+  // res.redirect('/businesses');
+ 
+  });
+  
+  // business id
+ router.route('/:id').
+ get(function(req, res, next){
 
- //  	}
- //  	else {
- //  		console.log('successful  insert query!');
- //  		console.log(rows);
- //  	}
- //  })
-	res.redirect('/businesses');
-});
+  Business.findById(req.params.id).then(function(business){
+    res.send(business);  //use this for api testing
+
+  }); 
+  // res.render('businesses/single', { _id : req.params.id}); uncomment this when done with api testing
+
+ });
+
 
 
 //Deals
