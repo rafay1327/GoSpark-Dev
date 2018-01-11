@@ -1,7 +1,6 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var ejs = require('ejs');
@@ -9,8 +8,6 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var reviewsRouter = require('./routes/reviewsRouter');
 var businessesRouter = require('./routes/businesses');
-const ejsLint = require('ejs-lint');
-var mysql = require('mysql');
 
 var app = express();
 
@@ -22,7 +19,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -32,7 +29,6 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/businesses', businessesRouter);
 app.use('/reviews', reviewsRouter );
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -52,22 +48,5 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// var con = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "rafay",
-//   database: "mydb"
-// });
-
-
-// con.connect(function(err) {
-//   if (err) throw err;
-//   console.log("Connected to GoSparkDB!");
-
-// 	con.query("CREATE DATABASE IF NOT EXISTS mydb", function (err, result) {
-//     if (err) throw err;
-//     console.log("Database created");
-//   });
-// });
 
 module.exports = app;

@@ -43,9 +43,22 @@ const Business = sequelize.define('Business', {
     timings: Sequelize.DATE,
     createdAt: Sequelize.DATE,
     updatedAt: Sequelize.DATE,
+    
+    // associate: (models) => {
+    
+    //   Business.hasMany(models.Deal {
+    //   foreignKey: 'deal_id',
+    //   constraints: false,
+    //   scope: {
+    //     commentable: 'business'
+    //   }
+    
+    //   });
+    //   }
+      
     }
 
-);
-
+    );
+    
  sequelize.sync();
  module.exports = Business;
