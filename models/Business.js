@@ -22,6 +22,7 @@ const Business = sequelize.define('Business', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
+    
     gallery_id: {
         type: Sequelize.INTEGER,
         allowNull: false

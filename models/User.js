@@ -3,7 +3,7 @@ var sequelize = require('../config/db'); //sequelize instance
 var bcrypt = require('bcrypt');
   const User = sequelize.define('user', {
 
-     
+
       wishlist_id:{
         type:Sequelize.INTEGER
       },
