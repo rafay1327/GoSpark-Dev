@@ -4,6 +4,7 @@ var mysql = require('mysql2');
 var Business = require('../models/Business');
 var Deal = require('../models/Deal');
 var Gallery = require('../models/Gallery');
+var Store = require('../models/Store');
 var path = require('path');
 const { URL } = require('url');
 
@@ -22,7 +23,7 @@ router.route('/')
 router.route('/create')
 .get(function(req, res, next){
 
-	res.render('businesses/create', {title: "GoSpark | Create Business"});
+	res.render(  'businesses/create', {title: "GoSpark | Create Business"});
 
 })
  .post(function(req, res, next){
@@ -43,7 +44,7 @@ router.route('/create')
     linkedin_url: 'www.facebook.com',
     website: 'www.facebook.com',
     opening_days: 'Mon, Tue , Thurs, Fri',
-    timings: '9-9',
+    timings: '9-9'
 
   
   })).then(business => {
@@ -79,7 +80,7 @@ router.route('/create')
 
 
 //Deals
-router.route('/:id/deals')
+router.route('/:id/store')
 .get(function(req, res, next) { 
    var business_found;
    Business.findById(req.params.id).then(function(business){
@@ -87,64 +88,69 @@ router.route('/:id/deals')
      business_found = business;
   }); 
    
-  //   Deal.findbyId({ 
-  //     where: {
-  //       id : business_found.id
-  //     }
-  //   }).then(function(deal){
-  //   res.send(deal);  //use this for api testing
+    Store.findbyId({ 
+      where: {
+        id : business_found.id
+      }
+    }).then(function(store){
+    res.send(store);  //use this for api testing
 
-  // }); 
+  }); 
 
   //res.render('businesses/deals/index', { title: "GoSpark Deals" });
 
 });
 
-//create deal for a business
-router.route('/:id/deals/create')
+//create store for a business
+router.route('/:id/stores/create')
 .get(function(req, res, next){
 
-  res.render('businesses/deals/create');
+  res.render('businesses/stores/create');
 
 })
 .post(function(req, res, next){
 
-  Deal.sync()
-  .then(() => Deal.create({
-    
-    business_id: req.params.b_id,
-    description: 'Test business desc',
-    image: '/abc.png',
+  Store.sync()
+  .then(() => Store.create({
+    business_id: '2',
+    location_id: '3',
     name: 'Test Deal',
-    start_date: '10-2-2016',
-    expiry_date: '10-10-2017',
-    unit_price: '550.00',
-    in_currency: 'PKR',
-    coupon_code: 'C2034',
+    address: 'Gulshan Iqbal 13D/1'
 
 
   
-  })).then(business => {
-   res.send(business.toJSON());
+  })).then(store => {
+   res.send(store.toJSON());
   });
 
 });
 
 
 
-router.route('/:b_id/deals/:d_id')
+router.route('/:b_id/stores/:s_id')
 .get(function(req, res, next){
 
-     Deal.findbyId({ 
-      where: {
-        id : req.params.d_id
-      }
-    }).then(function(deal){
-    res.send(deal);  //use this for api testing
+  Store.findById(req.params.s_id).then(function(store){
+    res.send(store);  //use this for api testing
 
-  }); 
+  });
 
-});
+}).put(function(req, res, next){
+
+ 
+
+
+})
+ .delete(function(req, res, next){
+
+        Store.destroy({
+          where: {
+            id: req.params.s_id
+          }
+
+    });
+        res.render('businesses/index');
+ });
 
 //Gallery
 router.route('/:id/gallery')
