@@ -2,16 +2,16 @@ var Sequelize = require('sequelize');
 var sequelize = require('../config/db'); //sequelize instance
 
 
-const Business = sequelize.define('Business', {
+const Business = sequelize.define('business', {
  
-    // id: {
-    // type: Sequelize.INTEGER,
-    // autoIncrements: true,
-    // primaryKey: true,
-    // allowNull: false
-    // },
-    user_id: {
-        type: Sequelize.INTEGER,
+    business_id: {
+    type: Sequelize.INTEGER,
+    autoIncrements: true,
+    primaryKey: true,
+    allowNull: false
+    },
+    user_email: {
+        type: Sequelize.STRING,
         allowNull: false
     },
     category_id: {
@@ -42,8 +42,7 @@ const Business = sequelize.define('Business', {
     website: Sequelize.STRING,
     opening_days: Sequelize.STRING,
     timings: Sequelize.DATE,
-    createdAt: Sequelize.DATE,
-    updatedAt: Sequelize.DATE,
+
     
     // associate: (models) => {
     

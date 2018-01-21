@@ -6,6 +6,8 @@ var Deal = require('../models/Deal');
 var Gallery = require('../models/Gallery');
 var Store = require('../models/Store');
 var Category = require('../models/Category');
+var Beacon = require('../models/Beacon');
+var Badge = require('../models/Badge');
 var path = require('path');
 const { URL } = require('url');
 
@@ -16,7 +18,7 @@ router.route('/')
   var business_all;
   Business.findAll().then(function(businesses){
     business_all = businesses;
-    res.send(business_all);
+    res.send(json.stringify(business_all));
   }); 
   //res.render('businesses/index', { title: "GoSpark | Businesses" });
   
@@ -34,7 +36,7 @@ router.route('/create')
 	Business.sync()
   .then(() => Business.create({
     
-    user_id: 2,
+    user_email: 'rafayck@hotmail.com',
     category_id: 4,
     membership_id: 7,
     gallery_id: 1,
@@ -162,8 +164,11 @@ router.route('/:b_id/stores/:id')
             id: req.params.s_id
           }
 
+    })
+    .then(function(store){
+       res.send(JSON.stringify(store));
     });
-        res.render('businesses/index');
+       // res.render('businesses/index');
  });
 
 
@@ -184,12 +189,16 @@ router.route('/:id/galleries')
         }
       }
     ).then(function(gallery){
-    console.log(gallery);
+    console.log(json.stringify(gallery));
     //res.send(gallery);  //use this for api testing
 
   });
       
 
+})
+router.route('/:id/galleries/create')
+.get(function(req, res, next){
+  res.render('businesses/galleries/create');
 })
 .post(function(req, res, next){
   Gallery.sync()
@@ -207,9 +216,30 @@ router.route('/:id/galleries')
     });
 
 });
+router.route('/:bid/galleries/:id')
+.get(function(req, res, next){
+  Gallery.findById(req.params.id)
+  .then(function(gallery){
+     //console.log(business);  //use this for api testing
+     //business_found = business;
+     res.send(JSON.stringify(gallery));
+    }); 
+})
+.delete(function(req, res, next){
+  Gallery.destroy({
+          where: {
+            id: req.params.id
+          }
 
+    })
+  .then(function(gallery){
+      res.send(JSON.stringify(gallery));
+  });
+});
 
+//Deals
 router.route('/:id/deals')
+
 
 
 module.exports = router;
