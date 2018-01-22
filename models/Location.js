@@ -24,6 +24,10 @@ const Locations = sequelize.define('Locations', {
     }
     
    
+    },
+
+    {
+      autoPK : false
     }
 
     );

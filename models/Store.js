@@ -3,12 +3,12 @@ var sequelize = require('../config/db'); //sequelize instance
 
 const Store = sequelize.define('store', {
 
-  StoreId: {
-    type: Sequelize.INTEGER,
-        autoIncrements: true,
-        primaryKey: true,
-        allowNull : false
-      },
+  // StoreId: {
+  //   type: Sequelize.INTEGER,
+  //       autoIncrements: true,
+  //       primaryKey: true,
+  //       allowNull : false
+  //     },
 
   // },
   // business_id: {
@@ -26,7 +26,8 @@ const Store = sequelize.define('store', {
   address: Sequelize.STRING,
 
 
-});
+}
+);
 
 sequelize.sync({force:true});
 

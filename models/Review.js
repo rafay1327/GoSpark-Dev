@@ -2,7 +2,7 @@ var Sequelize = require('sequelize');
 var sequelize = require('../config/db'); //sequelize instance
 
 
-const Review = sequelize.define('review', {
+const Review = sequelize.define('Review', {
    
     
     // badge_id: {

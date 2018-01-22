@@ -10,10 +10,10 @@ const Beacon = sequelize.define('beacon', {
   //   allowNull: false
   // },
 
-  store_id: {
-    type: Sequelize.INTEGER,
-    allowNull : false
-  }
+  // store_id: {
+  //   type: Sequelize.INTEGER,
+  //   allowNull : false
+  // }
 
 
 

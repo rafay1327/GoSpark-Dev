@@ -11,6 +11,8 @@ var Badge = require('../models/Badge');
 var Earning = require('../models/Earning');
 var Review = require('../models/Review');
 var Location = require('../models/Location');
+var User = require('../models/User');
+var Tag = require('../models/Tag');
 var path = require('path');
 const { URL } = require('url');
 

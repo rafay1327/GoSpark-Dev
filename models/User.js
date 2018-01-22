@@ -1,12 +1,16 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../config/db'); //sequelize instance
 var bcrypt = require('bcrypt');
-  const User = sequelize.define('user', {
+  const User = sequelize.define('User', {
 
 
       // wishlist_id:{
       //   type:Sequelize.INTEGER
       // },
+      user_id:{
+        type: Sequelize.INTEGER,
+        autoIncrements: true
+      },
       first_name: {
         type: Sequelize.STRING
       },
