@@ -4,9 +4,9 @@ var bcrypt = require('bcrypt');
   const User = sequelize.define('user', {
 
 
-      wishlist_id:{
-        type:Sequelize.INTEGER
-      },
+      // wishlist_id:{
+      //   type:Sequelize.INTEGER
+      // },
       first_name: {
         type: Sequelize.STRING
       },

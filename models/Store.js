@@ -3,22 +3,23 @@ var sequelize = require('../config/db'); //sequelize instance
 
 const Store = sequelize.define('store', {
 
-  // store_id: {
-  //   type: Sequelize.INTEGER,
-  //       autoIncrements: true,
-  //       primaryKey: true,
-
+  StoreId: {
+    type: Sequelize.INTEGER,
+        autoIncrements: true,
+        primaryKey: true,
+        allowNull : false
+      },
 
   // },
-  business_id: {
-    type:  Sequelize.INTEGER, 
-    allowNull: false
-  },
+  // business_id: {
+  //   type:  Sequelize.INTEGER, 
+  //   allowNull: false
+  // },
 
-  location_id:{
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
+  // location_id:{
+  //   type: Sequelize.INTEGER,
+  //   allowNull: false
+  // },
 
   name: Sequelize.STRING, 
 
@@ -27,7 +28,7 @@ const Store = sequelize.define('store', {
 
 });
 
-sequelize.sync();
+sequelize.sync({force:true});
 
 module.exports = Store;
 

@@ -11,14 +11,14 @@ const Review = sequelize.define('review', {
     //     primaryKey: true,
     //     allowNull: false
     // },
-    user_email:{
-        type: Sequelize.STRING,
-        allowNull:false
-    },
-    business_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
+    // user_email:{
+    //     type: Sequelize.STRING,
+    //     allowNull:false
+    // },
+    // business_id: {
+    //     type: Sequelize.INTEGER,
+    //     allowNull: false
+    // },
     text: {
         type: Sequelize.STRING
     },

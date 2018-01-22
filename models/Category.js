@@ -3,12 +3,12 @@ var sequelize = require('../config/db'); //sequelize instance
 
 const Category = sequelize.define('category', {
 
-	category_id:{
-		type: Sequelize.INTEGER,
-		autoIncrements: true,
-		primaryKey: true,
-		allowNull: false
-	},
+	// category_id:{
+	// 	type: Sequelize.INTEGER,
+	// 	autoIncrements: true,
+	// 	primaryKey: true,
+	// 	allowNull: false
+	// },
 	name: {
 		type:  Sequelize.STRING, 
 		allowNull: false

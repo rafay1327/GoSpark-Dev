@@ -8,7 +8,9 @@ var Store = require('../models/Store');
 var Category = require('../models/Category');
 var Beacon = require('../models/Beacon');
 var Badge = require('../models/Badge');
+var Earning = require('../models/Earning');
 var Review = require('../models/Review');
+var Location = require('../models/Location');
 var path = require('path');
 const { URL } = require('url');
 
@@ -139,8 +141,7 @@ router.route('/:id/stores/create')
 
   Store.sync()
   .then(() => Store.create({
-    business_id: req.params.id,
-    location_id: 3,
+ 
     name: 'Test Deal',
     address: 'Gulshan Iqbal 13D/1'
 
@@ -274,8 +275,8 @@ router.route('/:id/deals/create')
 
 })
 .post(function(req, res, next){
- Deal.sync()
- .then(() => Deal.create({
+  
+  Deal.create({
 
    business_id : req.params.id,
    name: "Double whopper",
@@ -289,7 +290,7 @@ router.route('/:id/deals/create')
 
 
 
- })).then(deal => {
+ }).then(deal => {
    res.send(deal.toJSON());
  });
 
@@ -346,10 +347,59 @@ router.route('/:bid/deals/:id')
  });
 });
 
+//REVIEWS
 
-//reviews
 router.route('/:id/reviews')
+.get(function(req, res, next) {
+  
+  Review.findAll({
+    where :{
+      business_id: req.params.id
+    }
+  }).then(function(reviews){
+    res.send(JSON.stringify(reviews));  //use this for api testing
+
+  });
+});
+
+router.route('/:id/reviews/create')
+.get(function(req,res,next){
+  res.render('businesses/reviews/create');
+})
+.post(function(req,res,next){
+  
+    Business.findById(req.params.id).then(function(business){
+      
+   Review.create({
+
+   user_email : business.user_email,
+   business_id : req.params.id,
+   text:'this is a good business',
+   rating: 2,
+   date: new Date()
+   
+
+
+   }).then(review => {
+     res.send(review.toJSON());
+   });
+
+});
+
+   
+});
+
+router.route('/:bid/reviews/:id')
 .get(function(req, res, next){
+
+  Review.find({
+    where:{
+      business_id: req.params.bid,
+      id : req.params.id
+    }
+  }).then(function(review){
+    res.send(JSON.stringify(review));
+  })
 
 });
 

@@ -5,12 +5,12 @@ var sequelize = require('../config/db'); //sequelize instance
 const Badge = sequelize.define('badge', {
    
     
-    badge_id: {
-        type: Sequelize.INTEGER,
-        autoIncrements: true,
-        primaryKey: true,
-        allowNull: false
-    },
+    // badge_id: {
+    //     type: Sequelize.INTEGER,
+    //     autoIncrements: true,
+    //     primaryKey: true,
+    //     allowNull: false
+    // },
     name: {
         type: Sequelize.STRING,
         allowNull: false

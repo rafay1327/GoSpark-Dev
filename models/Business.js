@@ -2,30 +2,30 @@ var Sequelize = require('sequelize');
 var sequelize = require('../config/db'); //sequelize instance
 
 
-const Business = sequelize.define('business', {
+var Business = sequelize.define('Business', {
  
     // business_id: {
     // type: Sequelize.INTEGER,
     // autoIncrements: true,
     // primaryKey: true
     // },
-    user_email: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    category_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
-    membership_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
+    // user_email: {
+    //     type: Sequelize.STRING,
+    //     allowNull: false
+    // },
+    // category_id: {
+    //     type: Sequelize.INTEGER,
+    //     allowNull: false
+    // },
+    // membership_id: {
+    //     type: Sequelize.INTEGER,
+    //     allowNull: false
+    // },
     
-    gallery_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    },
+    // gallery_id: {
+    //     type: Sequelize.INTEGER,
+    //     allowNull: false
+    // },
     name: {
         type: Sequelize.STRING,
         allowNull: false
@@ -42,22 +42,8 @@ const Business = sequelize.define('business', {
     opening_days: Sequelize.STRING,
     timings: Sequelize.DATE,
 
-    
-    // associate: (models) => {
-    
-    //   Business.hasMany(models.Deal {
-    //   foreignKey: 'deal_id',
-    //   constraints: false,
-    //   scope: {
-    //     commentable: 'business'
-    //   }
-    
-    //   });
-    //   }
-      
-    }
 
-    );
+    });
     
  sequelize.sync();
  module.exports = Business;
