@@ -7,10 +7,12 @@ const Gallery = sequelize.define('Gallery', {
  
   
     banner_image: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: true
     },
     photos: {
-        type: Sequelize.STRING 
+        type: Sequelize.STRING,
+        allowNull: true
     }
     },
     {

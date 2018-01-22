@@ -2,14 +2,14 @@ var Sequelize = require('sequelize');
 var sequelize = require('../config/db'); //sequelize instance
 
 
-const Deal = sequelize.define('Deal', {
+const Deal = sequelize.define('deal', {
  
-    deal_id:{
-        type: Sequelize.INTEGER,
-        autoIncrements: true,
-        primaryKey: true,
-        allowNull: false
-    },
+    // deal_id:{
+    //     type: Sequelize.INTEGER,
+    //     autoIncrements: true,
+    //     primaryKey: true,
+    //     allowNull: false
+    // },
     business_id: {
         type: Sequelize.INTEGER,
         allowNull: false

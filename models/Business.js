@@ -4,12 +4,11 @@ var sequelize = require('../config/db'); //sequelize instance
 
 const Business = sequelize.define('business', {
  
-    business_id: {
-    type: Sequelize.INTEGER,
-    autoIncrements: true,
-    primaryKey: true,
-    allowNull: false
-    },
+    // business_id: {
+    // type: Sequelize.INTEGER,
+    // autoIncrements: true,
+    // primaryKey: true
+    // },
     user_email: {
         type: Sequelize.STRING,
         allowNull: false

@@ -3,13 +3,13 @@ var sequelize = require('../config/db'); //sequelize instance
 
 const Store = sequelize.define('store', {
 
-  store_id: {
-    type: Sequelize.INTEGER,
-        autoIncrements: true,
-        primaryKey: true,
-        allowNull: false
+  // store_id: {
+  //   type: Sequelize.INTEGER,
+  //       autoIncrements: true,
+  //       primaryKey: true,
 
-  },
+
+  // },
   business_id: {
     type:  Sequelize.INTEGER, 
     allowNull: false
