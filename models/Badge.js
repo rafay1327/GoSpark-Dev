@@ -2,7 +2,7 @@
 var sequelize = require('../config/db'); //sequelize instance
 
 
-const Badge = sequelize.define('badge', {
+const Badge = sequelize.define('Badge', {
    
     
     // badge_id: {

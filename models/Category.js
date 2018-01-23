@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../config/db'); //sequelize instance
 
-const Category = sequelize.define('category', {
+const Category = sequelize.define('Category', {
 
 	// category_id:{
 	// 	type: Sequelize.INTEGER,

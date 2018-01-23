@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../config/db'); //sequelize instance
 
-const Beacon = sequelize.define('beacon', {
+const Beacon = sequelize.define('Beacon', {
 
   // beacon_id:{
   //   type: Sequelize.INTEGER,

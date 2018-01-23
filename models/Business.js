@@ -2,9 +2,9 @@ var Sequelize = require('sequelize');
 var sequelize = require('../config/db'); //sequelize instance
 
 
-var Business = sequelize.define('Business', {
+const Business = sequelize.define('Business', {
  
-    // business_id: {
+     // business_id: {
     // type: Sequelize.INTEGER,
     // autoIncrements: true,
     // primaryKey: true
@@ -30,20 +30,37 @@ var Business = sequelize.define('Business', {
         type: Sequelize.STRING,
         allowNull: false
     },
-    description: Sequelize.STRING,
+    description:{
+        type :Sequelize.STRING,  
+    },
     contact_no: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    facebook_url: Sequelize.STRING,
-    twitter_url: Sequelize.STRING,
-    linkedin_url: Sequelize.STRING,
-    website: Sequelize.STRING,
-    opening_days: Sequelize.STRING,
-    timings: Sequelize.DATE,
-
-
-    });
+    facebook_url: {
+        type:  Sequelize.STRING,
+    },
+    twitter_url :{
+        type:  Sequelize.STRING,
+    },
+    linkedin_url:{
+        type:  Sequelize.STRING,
+    },
+    website: {
+        type:  Sequelize.STRING,
+    },
+    opening_days: {
+        type:  Sequelize.STRING,
+    }
+    ,
+    timings: {
+        type:  Sequelize.DATE,
+    }
+  
     
+   
+    });
+
+
  sequelize.sync();
  module.exports = Business;

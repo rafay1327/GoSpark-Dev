@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql2');
-var Review = require('../models/Review');
-var Business = require('../models/Business');
-var businessRouter = require('./businessRouter');
+
 
 
 // //REVIEWS

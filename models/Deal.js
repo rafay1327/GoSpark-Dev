@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../config/db'); //sequelize instance
 
-
+var Business = require('./Business');
 var Deal = sequelize.define('Deal', {
  
     // deal_id:{
@@ -33,7 +33,10 @@ var Deal = sequelize.define('Deal', {
 
     
     });
-    
+   Deal.associate = function (models) {
+
+            Deal.belongsTo(Business);
+   };        
 
  sequelize.sync();
 

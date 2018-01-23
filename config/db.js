@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+
   const sequelize = new Sequelize(
     'gosparkdb', 
     'root',
@@ -19,56 +20,10 @@ const Sequelize = require('sequelize');
     // http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
     operatorsAliases: false
   });
-
-
+  
   module.exports = sequelize;
 
-
-
-
-    var Business = require('../models/Business');
-    var Store = require('../models/Store');
-    var Location = require('../models/Location');
-    var Deal = require('../models/Deal');
-    var Beacon = require('../models/Beacon');
-    var Category = require('../models/Category');
-    var Review = require('../models/Review');
-    var Tag = require('../models/Tag');
-    var User = require('../models/User');
-    var Membership = require('../models/Membership');
-    var Earning = require('../models/Earning');
-    var Gallery = require('../models/Gallery');
-    var Badge = require('../models/Badge');
-
-
-     Location.hasMany(Store);
-     Store.belongsTo(Location);
-     
-     Store.hasMany(Beacon);
-     Beacon.belongsTo(Store);
-
-     // Business.hasOne(Category ,{constraints: false});
-     // Category.belongsTo(Business, {constraints: false});
-
-     // Business.hasOne(Gallery , {constraints: false});
-     // Gallery.belongsTo(Business,  {constraints: false});
-
-     // Membership.hasMany(Business);
-     // Membership.belongsTo(Business);
-
-     //User.hasMany(Business);
-     //Business.belongsTo(User);
-
-     // Business.hasMany(Review);
-     // Review.belongsTo(Business);
-
-     // Review.hasOne(Earning);
-     // Earning.belongsTo(Review);
-
-
-
-
-
+  var index = require('../models/index');
 
 
   sequelize.authenticate()
@@ -78,3 +33,4 @@ const Sequelize = require('sequelize');
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
+module.exports = sequelize;

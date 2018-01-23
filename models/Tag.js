@@ -1,15 +1,29 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../config/db'); //sequelize instance
 
+const Tag = sequelize.define('Tag', {
 
-const Tag = sequelize.define('tag', {
- 
-    
-    description: {
-        type: Sequelize.STRING
-    }
-   
-    });
-    
- sequelize.sync();
- module.exports = Tag;
+	// category_id:{
+	// 	type: Sequelize.INTEGER,
+	// 	autoIncrements: true,
+	// 	primaryKey: true,
+	// 	allowNull: false
+	// },
+	description: {
+		type:  Sequelize.STRING, 
+		allowNull: false
+	}
+
+
+},
+{
+	timestamps: false
+}
+);
+
+sequelize.sync();
+
+module.exports = Tag;
+
+
+

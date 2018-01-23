@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../config/db'); //sequelize instance
 
-const Store = sequelize.define('store', {
+const Store = sequelize.define('Store', {
 
   // StoreId: {
   //   type: Sequelize.INTEGER,
@@ -29,7 +29,7 @@ const Store = sequelize.define('store', {
 }
 );
 
-sequelize.sync({force:true});
+sequelize.sync();
 
 module.exports = Store;
 

@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql2');
+//sad
+
+var Tag = require('../models/Tag');
 var Business = require('../models/Business');
 var Deal = require('../models/Deal');
 var Gallery = require('../models/Gallery');
@@ -12,7 +15,7 @@ var Earning = require('../models/Earning');
 var Review = require('../models/Review');
 var Location = require('../models/Location');
 var User = require('../models/User');
-var Tag = require('../models/Tag');
+var Membership = require('../models/Membership');
 var path = require('path');
 const { URL } = require('url');
 
@@ -38,8 +41,8 @@ router.route('/create')
 .post(function(req, res, next){
 
 
-	Business.sync()
-  .then(() => Business.create({
+
+  Business.create({
 
     user_email: 'rafayck@hotmail.com',
     category_id: 4,
@@ -56,7 +59,7 @@ router.route('/create')
     timings: '9-9'
 
 
-  })).then(business => {
+  }).then(business => {
    res.send(JSON.stringify(business));
  });
 
