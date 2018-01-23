@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../config/db'); //sequelize instance
 
-const Tag = sequelize.define('Tag', {
+const tag = sequelize.define('tag', {
 
 	// category_id:{
 	// 	type: Sequelize.INTEGER,
@@ -19,11 +19,10 @@ const Tag = sequelize.define('Tag', {
 {
 	timestamps: false
 }
-);
-
+)
 sequelize.sync();
+module.exports = tag;
 
-module.exports = Tag;
 
 
 
