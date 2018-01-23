@@ -37,16 +37,16 @@ console.log(BusinessTag);
 Business.hasMany(Deal, { foreignKey: { allowNull: false }});
 Deal.belongsTo(Business);
 
-Location.hasMany(Store);
+Location.hasMany(Store, { foreignKey: { allowNull: false }});
 Store.belongsTo(Location);
 
-Store.hasMany(Beacon);
+Store.hasMany(Beacon , { foreignKey: { allowNull: false }});
 Beacon.belongsTo(Store);
 
 Category.hasMany(Business);
 Business.belongsTo(Category);
 
-Gallery.hasOne(Business);
+Gallery.hasOne(Business, { foreignKey: { allowNull: false }});
 Business.belongsTo(Gallery);
 
 Membership.hasMany(Business);

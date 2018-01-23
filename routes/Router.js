@@ -40,8 +40,6 @@ router.route('/create')
 })
 .post(function(req, res, next){
 
-
-
   Business.create({
 
     user_email: 'rafayck@hotmail.com',

@@ -7,7 +7,7 @@ var ejs = require('ejs');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var reviewsRouter = require('./routes/reviewsRouter');
-var businessesRouter = require('./routes/businessRouter');
+var Router = require('./routes/Router');
 
 var app = express();
 
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/businesses', businessesRouter);
+app.use('/businesses', Router);
 app.use('/reviews', reviewsRouter );
 
 // catch 404 and forward to error handler
