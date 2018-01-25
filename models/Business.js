@@ -54,7 +54,7 @@ const Business = sequelize.define('Business', {
     }
     ,
     timings: {
-        type:  Sequelize.DATE,
+        type:  Sequelize.STRING,
     }
   
     

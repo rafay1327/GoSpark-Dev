@@ -24,6 +24,9 @@ const Locations = sequelize.define('Locations', {
     }
     
    
+    },
+    {
+      timestamps : false
     }
 
 

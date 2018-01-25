@@ -43,7 +43,7 @@ Store.belongsTo(Location);
 Store.hasMany(Beacon , { foreignKey: { allowNull: false }});
 Beacon.belongsTo(Store);
 
-Category.hasMany(Business);
+Category.hasMany(Business , { foreignKey: { allowNull: false }} );
 Business.belongsTo(Category);
 
 Gallery.hasOne(Business, { foreignKey: { allowNull: false }});
@@ -52,16 +52,16 @@ Business.belongsTo(Gallery);
 Membership.hasMany(Business);
 Business.belongsTo(Membership);
 
-User.hasMany(Business);
+User.hasMany(Business, { foreignKey: { allowNull: false }});
 Business.belongsTo(User);
 
-User.hasMany(Review);
+User.hasMany(Review, { foreignKey: { allowNull: false }});
 Review.belongsTo(User);
 
-Business.hasMany(Review);
+Business.hasMany(Review , { foreignKey: { allowNull: false }} );
 Review.belongsTo(Business);
 
-Review.hasOne(Earning);
+Review.hasOne(Earning , { foreignKey: { allowNull: false }} );
 Earning.belongsTo(Review);
 
 

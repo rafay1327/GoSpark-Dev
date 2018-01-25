@@ -11,8 +11,8 @@ var BusinessTag = sequelize.define('business_tag',{},
       timestamps: false
      });
 
-    BusinessTag.belongsTo(tag);
-    BusinessTag.belongsTo(Business);
+    BusinessTag.belongsTo(tag, { foreignKey: { allowNull: false }});
+    BusinessTag.belongsTo(Business, { foreignKey: { allowNull: false }} );
     
 
     sequelize.sync();

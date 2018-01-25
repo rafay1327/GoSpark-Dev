@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var mysql = require('mysql2');
-//sad
+var multer = require('multer');
+var crypto = require('crypto');
 
 var Tag = require('../models/Tag');
 var Business = require('../models/Business');
@@ -18,6 +18,8 @@ var User = require('../models/User');
 var Membership = require('../models/Membership');
 var path = require('path');
 const { URL } = require('url');
+
+
 
 
 //Businesses
@@ -41,11 +43,7 @@ router.route('/create')
 .post(function(req, res, next){
 
   Business.create({
-
-    user_email: 'rafayck@hotmail.com',
-    category_id: 4,
-    membership_id: 7,
-    gallery_id: 2,
+   
     name: 'Test Business 2',
     description: 'Test business desc',
     contact_no: '464652348',
@@ -54,7 +52,13 @@ router.route('/create')
     linkedin_url: 'www.facebook.com',
     website: 'www.facebook.com',
     opening_days: 'Mon, Tue , Thurs, Fri',
-    timings: '9-9'
+    timings: '9-9',
+    CategoryId : 1,
+    GalleryId: 1, 
+    MembershipId: 1,
+    UserEmail: 'rafayck@hotmail.com'
+    
+ 
 
 
   }).then(business => {
@@ -79,7 +83,10 @@ router.route('/create')
   .put(function(req, res, next){
       
     Business.update({
-     
+    user_email: 'rafayck@hotmail',
+    categoryId : 1, 
+    membershipId: 3,
+    galleryId: 4,
     name: 'Test Business EDITED',
     description: 'Test business desc EDITED',
     contact_no: '464652348',
@@ -137,7 +144,7 @@ router.route('/:id/stores')
 router.route('/:id/stores/create')
 .get(function(req, res, next){
 
-  res.render('businesses/stores/create');
+  res.render('stores/create');
 
 })
 .post(function(req, res, next){
@@ -209,7 +216,10 @@ router.route('/:id/galleries')
 
       Gallery.findById(business.gallery_id)
       .then(function(gallery){
-       res.send(JSON.stringify(gallery.photos));
+        if(gallery == null){
+          res.send('no photos');
+        }
+       else res.send(JSON.stringify(gallery.photos));
 
      });
     }); 
@@ -217,20 +227,47 @@ router.route('/:id/galleries')
 
 router.route('/:id/galleries/create')
 .get(function(req, res, next){
-  res.render('businesses/galleries/create');
+  res.render('galleries/create');
 })
 .post(function(req, res, next){
-  Gallery.sync()
-  .then(() => Gallery.create({
+
+//   const storage = multer.diskStorage({
+//   destination: '/images',
+//   filename: function (req, file, callback) {
+//     //..
+//   }
+// });
+
+
+//   crypto.pseudoRandomBytes(16, function(err, raw) {
+//   if (err) return callback(err);
+
+//     callback(null, raw.toString('hex') + path.extname(file.originalname));
+//   });
+  
+//     upload.single('avatar'), (req, res) => {
+//     if (!req.file) {
+//       console.log("No file received");
+//       return res.send({
+//         success: false
+//       });
+
+//     } else {
+//       console.log('file received');
+//       return res.send({
+//         success: true
+//       })
+//     }
+//   };
+
+
+  Gallery.create({
 
 
     banner_image: '/abc.png',
     photos: '/bcd.png, /cde.png',
-
-
-
     
-  })).then(gallery => {
+  }).then(gallery => {
    res.send(gallery.toJSON());
  });
 
@@ -274,7 +311,7 @@ router.route('/:id/deals')
 router.route('/:id/deals/create')
 .get(function(req, res, next){
 
-  res.render('businesses/deals/create');
+  res.render('deals/create');
 
 })
 .post(function(req, res, next){
@@ -367,15 +404,15 @@ router.route('/:id/reviews')
 
 router.route('/:id/reviews/create')
 .get(function(req,res,next){
-  res.render('businesses/reviews/create');
+  res.render('reviews/create');
 })
 .post(function(req,res,next){
-  
+    
     Business.findById(req.params.id).then(function(business){
       
    Review.create({
 
-   user_email : business.user_email,
+   user_email : 'rafayck@hotmail',
    business_id : req.params.id,
    text:'this is a good business',
    rating: 2,
@@ -385,25 +422,26 @@ router.route('/:id/reviews/create')
 
    }).then(review => {
      res.send(review.toJSON());
-   });
+   })
+    .then(console.log(new Date()));
 
 });
 
    
 });
 
-router.route('/:bid/reviews/:id')
-.get(function(req, res, next){
+  router.route('/:bid/reviews/:id')
+  .get(function(req, res, next){
 
-  Review.find({
-    where:{
-      business_id: req.params.bid,
-      id : req.params.id
-    }
-  }).then(function(review){
-    res.send(JSON.stringify(review));
-  })
+    Review.find({
+      where:{
+        business_id: req.params.bid,
+        id : req.params.id
+      }
+    }).then(function(review){
+      res.send(JSON.stringify(review));
+    })
 
-});
+  });
 
 module.exports = router;

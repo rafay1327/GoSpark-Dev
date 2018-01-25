@@ -17,7 +17,7 @@ const Membership= sequelize.define('Membership',{
       allowNull: false
     },
     price: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.FLOAT,
       allowNull: false
     },
 

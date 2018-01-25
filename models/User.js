@@ -40,7 +40,12 @@ var bcrypt = require('bcrypt');
         type: Sequelize.DATEONLY
       }
 
-      }, {
+      },
+      {
+      timestamps: false
+      },
+
+       {
       instanceMethods: {
         generateHash: function (password) {
           return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
@@ -49,8 +54,8 @@ var bcrypt = require('bcrypt');
           return bcrypt.compareSync(password, this.password)
         }
       },
-
-     
+      
+   
 
 
     });

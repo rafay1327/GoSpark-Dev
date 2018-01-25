@@ -13,8 +13,8 @@ var BusinessBadge = sequelize.define('business_badge',{},
 
 
     
-    BusinessBadge.belongsTo(Business);
-    BusinessBadge.belongsTo(Badge);
+    BusinessBadge.belongsTo(Business, { foreignKey: { allowNull: false }} );
+    BusinessBadge.belongsTo(Badge , { foreignKey: { allowNull: false }});
 
     sequelize.sync();
 

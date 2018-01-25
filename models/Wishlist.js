@@ -10,11 +10,11 @@ var UserDeal = sequelize.define('wishlist',{},{timestamps : false});
 
 
     
-    UserDeal.belongsTo(User);
-    UserDeal.belongsTo(Deal);
+    UserDeal.belongsTo(User, { foreignKey: { allowNull: false }});
+    UserDeal.belongsTo(Deal, { foreignKey: { allowNull: false }});
 
 
-   //  const seed = () =>{
+   //  const seed = () => {
    //  	return sync()
    //  	.then( () => {
    //  		return Promise.all([
