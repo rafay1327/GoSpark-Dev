@@ -28,15 +28,11 @@ var Deal = sequelize.define('Deal', {
     start_date: Sequelize.DATE,
     expiry_date: Sequelize.DATE,
     unit_price: Sequelize.FLOAT,
-    in_currency: Sequelize.STRING,
+    currency: Sequelize.STRING,
     coupon_code: Sequelize.STRING,
 
     
     });
-   Deal.associate = function (models) {
-
-            Deal.belongsTo(Business);
-   };        
 
  sequelize.sync();
 

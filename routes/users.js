@@ -44,7 +44,7 @@ router.route('/register')
 
   first_name: 'Hamza',
   last_name: 'Usman',
-  email: 'rafay@yahoo.com',
+  email: 'rafayck@yahoo.com',
   password: 'hamza',
   gender: 'male',
   date_of_birth: then
