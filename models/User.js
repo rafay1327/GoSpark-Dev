@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../config/db'); //sequelize instance
 var bcrypt = require('bcrypt');
-  const User = sequelize.define('User', {
+  const user = sequelize.define('user', {
 
 
       // wishlist_id:{
@@ -63,7 +63,4 @@ var bcrypt = require('bcrypt');
   // force: true will drop the table if it already exists
   sequelize.sync();
 
-   module.exports = User;
-
-
- 
+   module.exports = user;

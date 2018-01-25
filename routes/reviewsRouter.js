@@ -1,64 +1,99 @@
 var express = require('express');
 var router = express.Router();
+var Sequelize = require('sequelize');
 var mysql = require('mysql2');
+var reviews = require('../models/Review');
+var path = require('path');
+const { URL } = require('url');
+var jsonDate = "2017-05-06";
+var then = new Date(jsonDate);
 
 
-
-// //REVIEWS
-
-// router.route('/:id/reviews')
-// .get(function(req, res, next) {
+router.route('/')
+.get(function(req, res, next) {
+  var reviews_all;
+  reviews.findAll().then(function(reviews){
+    reviews_all = reviews;
+    res.send(reviews);
+  }); 
   
-//   Review.findAll({
-//     where :{
-//       business_id: req.params.id
-//     }
-//   }).then(function(reviews){	
-//     res.send(JSON.stringify(reviews));  //use this for api testing
-
-//   });
-// });
-
-// router.route('/:id/reviews/create')
-// .get(function(req,res,next){
-//   res.render('businesses/reviews/create');
-// })
-// .post(function(req,res,next){
   
-//     Business.findById(req.params.id).then(function(business){
+});
+
+router.route('/create')
+.get(function(req, res, next){
+
+	res.render('reviews/create', {title: "GoSpark | Type a review"});
+
+})
+ .post(function(req, res, next){
+
+
+	reviews.create({
+   
+  
+   userEmail: 'rafayck@hotmail.com',
+   BusinessId: 2,
+   text: 'bad food quality',
+   rating: 2,
+   date: then
+  
+
+  
+  }).then(review => {
+   res.send(review.toJSON());
+  });
+
+ 
+});
+  
+  // review_id
+ router.route('/:id')
+ .get(function(req, res, next){
+
+  reviews.findById(req.params.id).then(function(review){
+    res.send(review);  //use this for api testing
+
+  }); 
+  
+ })
+ .put(function(req, res, next){
       
-//    Review.create({
+    reviews.update({
+     userEmail: 'rafayck@hotmail.com',
+     BusinessId: 2,
+     text: 'bad food quality',
+     rating: 2,
+     date: then
+    
 
-//    user_email : business.user_email,
-//    business_id : req.params.id,
-//    text:'this is a good business',
-//    rating: 2,
-//    date: new Date()
-   
+    },
+    {
+      where: {
+          id : req.params.id
+      }
+    }).then(function(review){
+
+      res.send(JSON.stringify(review));
+
+  });
+
+  })
+ .delete(function(req, res, next){
+
+        reviews.destroy({
+          where: {
+            id: req.params.id
+          }
+
+    });
+        res.render('reviews/index');
+ });
 
 
-//    }).then(review => {
-//      res.send(review.toJSON());
-//    });
 
-// });
 
-   
-// });
 
-// router.route('/:bid/reviews/:id')
-// .get(function(req, res, next){
-
-//   Review.find({
-//     where:{
-//       business_id: req.params.bid,
-//       id : req.params.id
-//     }
-//   }).then(function(review){
-//     res.send(JSON.stringify(review));
-//   })
-
-// });
 
 
 
