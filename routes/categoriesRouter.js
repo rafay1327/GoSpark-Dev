@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var Category = require('../models/Category')
+
+var db = require('../models');
+var Category = db.Category;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

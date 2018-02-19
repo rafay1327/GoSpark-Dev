@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var Tag = require('../models/Tag')
+var db = require('../models');
+var Tag = db.Tag;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

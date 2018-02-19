@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var Membership = require('../models/Membership')
+
+var db = require('../models');
+var Membership = db.Membership;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

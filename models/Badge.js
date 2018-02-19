@@ -1,25 +1,11 @@
-    var Sequelize = require('sequelize');
-var sequelize = require('../config/db'); //sequelize instance
-
-
-const Badge = sequelize.define('Badge', {
-   
-    
-    // badge_id: {
-    //     type: Sequelize.INTEGER,
-    //     autoIncrements: true,
-    //     primaryKey: true,
-    //     allowNull: false
-    // },
-    name: {
-        type: Sequelize.STRING,
-        allowNull: false
-    }
-} , 
-{
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  var Badge = sequelize.define('Badge', {
+    name: DataTypes.STRING
+  }, {
     timestamps : false
-}
-);
+  });
 
-sequelize.sync();
-module.exports = Badge;
+  
+  return Badge;
+};

@@ -1,39 +1,14 @@
-var Sequelize = require('sequelize');
-var sequelize = require('../config/db'); //sequelize instance
-
-var Business = require('./Business');
-var Deal = sequelize.define('Deal', {
- 
-    // deal_id:{
-    //     type: Sequelize.INTEGER,
-    //     autoIncrements: true,
-    //     primaryKey: true,
-    //     allowNull: false
-    // },
-    // business_id: {
-    //     type: Sequelize.INTEGER,
-    //     allowNull: false
-    // },
-    description: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    image: {
-        type: Sequelize.STRING,
-    },
-     name: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    start_date: Sequelize.DATE,
-    expiry_date: Sequelize.DATE,
-    unit_price: Sequelize.FLOAT,
-    currency: Sequelize.STRING,
-    coupon_code: Sequelize.STRING,
-
-    
-    });
-
- sequelize.sync();
-
-  module.exports = Deal;
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  var Deal = sequelize.define('Deal', {
+    description: DataTypes.STRING,
+    image: DataTypes.STRING,
+    name: DataTypes.STRING,
+    start_date: DataTypes.DATE,
+    expiry_date: DataTypes.DATE,
+    unit_price: DataTypes.FLOAT,
+    coupon_code: DataTypes.STRING
+  }, {
+  });
+  return Deal;
+};

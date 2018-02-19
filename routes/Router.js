@@ -3,20 +3,23 @@ var router = express.Router();
 var multer = require('multer');
 var crypto = require('crypto');
 
-var Tag = require('../models/Tag');
-var Business = require('../models/Business');
-var Deal = require('../models/Deal');
-var Gallery = require('../models/Gallery');
-var Store = require('../models/Store');
-var Category = require('../models/Category');
-var Beacon = require('../models/Beacon');
-var Badge = require('../models/Badge');
-var Earning = require('../models/Earning');
-var Review = require('../models/Review');
-var Location = require('../models/Location');
-var User = require('../models/User');
-var Membership = require('../models/Membership');
+
 var path = require('path');
+
+var db = require('../models');
+var Business = db.Business,
+Deal = db.Deal,
+Gallery = db.Gallery,
+Store = db.Store,
+Category = db.Category,
+Beacon = db.Beacon,
+Badge = db.Badge,
+Earning = db.Earning,
+Review = db.Review,
+Location = db.Location,
+User = db.User,
+Membership = db.Membership;
+
 const { URL } = require('url');
 
 
@@ -129,7 +132,7 @@ router.route('/:id/stores')
 
  Store.findAll({
   where: {
-    business_id : req.params.id 
+    BusinessId : req.params.id 
   }
 }).then(function(store){
     res.send(JSON.stringify(store));  //use this for api testing
@@ -300,7 +303,7 @@ router.route('/:id/deals')
 .get(function(req, res, next){
   Deal.findAll({
     where :{
-      business_id: req.params.id
+      BusinessId: req.params.id
     }
   }).then(function(deal){
     res.send(JSON.stringify(deal));  //use this for api testing
@@ -318,7 +321,7 @@ router.route('/:id/deals/create')
   
   Deal.create({
 
-   business_id : req.params.id,
+   BusinessId : req.params.id,
    name: "Double whopper",
    description: "Buy one get one free",
    image: "abc.png",
@@ -342,7 +345,7 @@ router.route('/:bid/deals/:id')
  Deal.findAll({
   where:{
     id:req.params.id,
-    business_id: req.params.bid
+    BusinessId: req.params.bid
   }
 
 })
@@ -394,7 +397,7 @@ router.route('/:id/reviews')
   
   Review.findAll({
     where :{
-      business_id: req.params.id
+      businessId: req.params.id
     }
   }).then(function(reviews){
     res.send(JSON.stringify(reviews));  //use this for api testing
@@ -412,8 +415,8 @@ router.route('/:id/reviews/create')
       
    Review.create({
 
-   user_email : 'rafayck@hotmail',
-   business_id : req.params.id,
+   userEmail : 'rafayck@hotmail.com',
+   BusinessId : req.params.id,
    text:'this is a good business',
    rating: 2,
    date: new Date()
@@ -435,12 +438,44 @@ router.route('/:id/reviews/create')
 
     Review.find({
       where:{
-        business_id: req.params.bid,
+        businessId: req.params.bid,
         id : req.params.id
       }
     }).then(function(review){
       res.send(JSON.stringify(review));
     })
+
+  })
+  .put(function(req, res, next){
+      
+    Review.update({
+     userEmail : 'rafayck@hotmail.com',
+     BusinessId : req.params.bid,
+     text:'this is a good business EDITED',
+     rating: 4,
+     date: new Date()
+     
+    },
+    {
+      where: {
+          id : req.params.id
+      }
+    }).then(function(business){
+
+      res.send(JSON.stringify(business));
+
+  });
+
+  })
+  .delete(function(req ,res , next){
+
+    Review.destroy({
+      where:{
+        id : req.params.id
+      }
+    }).then(review => {
+   res.send(JSON.stringify(review));
+  });
 
   });
 

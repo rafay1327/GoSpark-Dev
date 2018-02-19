@@ -1,30 +1,9 @@
-var Sequelize = require('sequelize');
-var sequelize = require('../config/db'); //sequelize instance
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  var Beacon = sequelize.define('Beacon', {}, {
+    timestamps:false
+  });
 
-const Beacon = sequelize.define('Beacon', {
-
-  // beacon_id:{
-  //   type: Sequelize.INTEGER,
-  //   autoIncrements: true,
-  //   primaryKey: true,
-  //   allowNull: false
-  // },
-
-  // store_id: {
-  //   type: Sequelize.INTEGER,
-  //   allowNull : false
-  // }
-
-
-
-},
-{
-  timestamps: false
-});
-
-sequelize.sync();
-
-module.exports = Beacon;
-
-
-
+  
+  return Beacon;
+};

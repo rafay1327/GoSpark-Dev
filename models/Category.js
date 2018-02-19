@@ -1,29 +1,9 @@
-var Sequelize = require('sequelize');
-var sequelize = require('../config/db'); //sequelize instance
-
-const Category = sequelize.define('Category', {
-
-	// category_id:{
-	// 	type: Sequelize.INTEGER,
-	// 	autoIncrements: true,
-	// 	primaryKey: true,
-	// 	allowNull: false
-	// },
-	name: {
-		type:  Sequelize.STRING, 
-		allowNull: false
-	}
-
-
-},
-{
-	timestamps: false
-}
-);
-
-sequelize.sync();
-
-module.exports = Category;
-
-
-
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  var Category = sequelize.define('Category', {
+    name: DataTypes.STRING
+  }, {
+    timestamps:false
+  });
+  return Category;
+};

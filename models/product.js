@@ -1,11 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Membership = sequelize.define('Membership', {
+  var Product = sequelize.define('Product', {
     name: DataTypes.STRING,
     description: DataTypes.STRING,
-    price: DataTypes.FLOAT
+    price: DataTypes.FLOAT,
+    tagline: DataTypes.STRING
   }, {
     
   });
-  return Membership;
+  return Product;
 };

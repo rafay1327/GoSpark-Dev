@@ -1,64 +1,36 @@
-var Store = require('./Store')
-var Business = require('./Business')
-var Location = require('./Location');
-var Deal = require('./Deal');
-var Category = require('./Category');
-var Review = require('./Review');
-var Beacon = require('./Beacon');
-var tag = require('./tag')
-var user = require('./user')
-var Membership = require('./Membership')
-var Earning = require('./Earning')
-var Gallery = require('./Gallery')
-var Badge = require('./Badge');
-var BusinessTag = require('./BusinessTag');
-var UserDeal = require('./Wishlist');
-var BusinessBadge = require('./BusinessBadge');
+'use strict';
 
-console.log(Business);
-console.log(Deal);
-console.log(Location);
-console.log(Membership);
-console.log(user);
-console.log(tag);
-console.log(Badge);
-console.log(Gallery);
-console.log(Earning);
-console.log(Review);
-console.log(Category);
-console.log(Beacon);
-console.log(Store);
-console.log(BusinessBadge);
-console.log(UserDeal);
-console.log(BusinessTag);
+var fs        = require('fs');
+var path      = require('path');
+var Sequelize = require('sequelize');
+var basename  = path.basename(__filename);
+var env       = process.env.NODE_ENV || 'development';
+var config    = require(__dirname + '/../config/config.json')[env];
+var db        = {};
 
-Business.hasMany(Deal, { foreignKey: { allowNull: false }});
-Deal.belongsTo(Business);
+if (config.use_env_variable) {
+  var sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  var sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
 
-Location.hasMany(Store, { foreignKey: { allowNull: false }});
-Store.belongsTo(Location);
+fs
+  .readdirSync(__dirname)
+  .filter(file => {
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+  })
+  .forEach(file => {
+    var model = sequelize['import'](path.join(__dirname, file));
+    db[model.name] = model;
+  });
 
-Store.hasMany(Beacon , { foreignKey: { allowNull: false }});
-Beacon.belongsTo(Store);
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
 
-Category.hasMany(Business , { foreignKey: { allowNull: false }} );
-Business.belongsTo(Category);
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
-Gallery.hasOne(Business, { foreignKey: { allowNull: false }});
-Business.belongsTo(Gallery);
-
-Membership.hasMany(Business);
-Business.belongsTo(Membership);
-
-user.hasMany(Business, { foreignKey: { allowNull: false }});
-Business.belongsTo(user);
-
-user.hasMany(Review, { foreignKey: { allowNull: false }});
-Review.belongsTo(user);
-
-Business.hasMany(Review , { foreignKey: { allowNull: false }} );
-Review.belongsTo(Business);
-
-Review.hasOne(Earning , { foreignKey: { allowNull: false }} );
-Earning.belongsTo(Review);
-
+module.exports = db;

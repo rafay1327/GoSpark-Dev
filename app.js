@@ -8,7 +8,6 @@ var ejs = require('ejs');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var reviewsRouter = require('./routes/reviewsRouter');
 var Router = require('./routes/Router');
 var categoriesRouter = require('./routes/categoriesRouter');
 var membershipsRouter = require('./routes/membershipRouter');
@@ -36,7 +35,6 @@ app.use(morgan('dev'));
 app.use('/', index);
 app.use('/users', users);
 app.use('/businesses', Router);
-app.use('/reviews', reviewsRouter );
 app.use('/categories', categoriesRouter);
 app.use('/memberships', membershipsRouter);
 app.use('/tags', tagsRouter);

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Badge = require('../models/Badge')
+var Badge = require('../models/badge')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

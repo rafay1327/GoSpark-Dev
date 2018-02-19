@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var Location = require('../models/Location')
+
+var db = require('../models');
+var Location = db.Location;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
