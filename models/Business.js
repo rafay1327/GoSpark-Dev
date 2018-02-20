@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
    Business.belongsTo(models.User, { foreignKey: { allowNull: false }});
    Business.belongsTo(models.Membership, { foreignKey: { allowNull: false }});
 
-   
+   Business.belongsToMany(models.Tag, { through: 'business_tag', as: 'tag' });
 
   };
 

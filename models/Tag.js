@@ -6,8 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     timestamps:false
   });
 
-   Tag.associate = function (models) {
-   
+  Tag.associate = function (models) {
+   	Tag.belongsToMany(models.Business, { through: 'business_tag', as: 'business' });
   };
   return Tag;
 };

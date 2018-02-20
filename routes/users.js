@@ -24,15 +24,11 @@ router.route('/')
   
   
 });
-router.route('/login')
-.get(function(req, res, next){
-  res.render('users/login');
-});
 
-router.route('/register')
+router.route('/create')
 .get(function(req, res, next){
 
-	res.render('users/register', {title: "GoSpark | Create User"});
+	res.render('users/create', {title: "GoSpark | Create User"});
 
 })
  .post(function(req, res, next){
@@ -41,13 +37,13 @@ router.route('/register')
 	users.sync()
   .then(() => users.create({
    
-
-  first_name: 'Hamza',
-  last_name: 'Usman',
-  email: 'rafayck@yahoo.com',
-  password: 'hamza',
-  gender: 'male',
-  date_of_birth: then
+   wishlist_id: 578,
+first_name: 'Hamza',
+last_name: 'Usman',
+email: 'rafay@yahoo.com',
+password: 'hamza',
+gender: 'male',
+date_of_birth: then
 
   
   })).then(user => {

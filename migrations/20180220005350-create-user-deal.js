@@ -1,28 +1,29 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Earnings', {
+    return queryInterface.createTable('user_deals', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      points: {
-        type: Sequelize.FLOAT
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+      UserEmail: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'Users',
+          key: 'email'
+        },
+        allowNull:false
       },
-      ReviewId: {
+      DealId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Reviews',
+          model: 'Deals',
           key: 'id'
         },
         allowNull:false
@@ -30,6 +31,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Earnings');
+    return queryInterface.dropTable('user_deals');
   }
 };

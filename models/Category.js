@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
 
 
   Category.associate = function (models) {
-   Category.belongsTo(models.Business, { foreignKey: { allowNull: false }});
+   Category.hasMany(models.Business);
    };
 
   return Category;

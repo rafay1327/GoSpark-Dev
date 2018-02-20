@@ -1,28 +1,25 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Galleries', {
+    return queryInterface.createTable('business_tags', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      banner_image: {
-        type: Sequelize.STRING
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-       BusinessId: {
+      BusinessId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Businesses',
+          key: 'id'
+        },
+        allowNull:false
+      },
+      TagId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Tags',
           key: 'id'
         },
         allowNull:false
@@ -30,6 +27,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Galleries');
+    return queryInterface.dropTable('business_tags');
   }
 };

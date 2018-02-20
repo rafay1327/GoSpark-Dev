@@ -1,14 +1,14 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var earnings = sequelize.define('Earning', {
+  var Earning = sequelize.define('Earning', {
     points: DataTypes.FLOAT
   }, {});
 
 
-    Earning.associate = function (models) {
- 
+   Earning.associate = function (models) {
+ 	 Earning.hasOne(models.Review, { foreignKey: {allowNull:false}});
    };
 
 
-  return earnings;
+  return Earning;
 };

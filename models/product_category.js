@@ -6,5 +6,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
    timestamps:false
   });
+
+  product_category.associate = function (models) {
+
+    product_category.belongsToMany(models.Product, { through: 'product_pcategory', as: 'product' });
+   };
+
   return product_category;
 };

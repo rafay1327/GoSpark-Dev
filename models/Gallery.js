@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
 
 
  Gallery.associate = function (models) {
- 	 Gallery.BelongsTo(models.Business);	
+ 	 Gallery.belongsTo(models.Business);	
  };
   return Gallery;
 };
