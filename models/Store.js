@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
 
    Store.associate = function (models) {
 	 Store.hasMany(models.Beacon);
+	 Store.belongsTo(models.Business, {foreignKey: { allowNull : false}});
   };
   return Store;
 };

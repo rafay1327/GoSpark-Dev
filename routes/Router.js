@@ -57,9 +57,8 @@ router.route('/create')
     opening_days: 'Mon, Tue , Thurs, Fri',
     timings: '9-9',
     CategoryId : 1,
-    GalleryId: 1, 
     MembershipId: 1,
-    UserEmail: 'rafayck@hotmail.com'
+    UserEmail: 'rafay@yahoo.com'
     
  
 
@@ -86,10 +85,9 @@ router.route('/create')
   .put(function(req, res, next){
       
     Business.update({
-    user_email: 'rafayck@hotmail',
-    categoryId : 1, 
-    membershipId: 3,
-    galleryId: 4,
+    UserEmail: 'rafayck@hotmail',
+    CategoryId : 1, 
+    MembershipId: 3,
     name: 'Test Business EDITED',
     description: 'Test business desc EDITED',
     contact_no: '464652348',
@@ -125,7 +123,7 @@ router.route('/create')
 
 
 
-//Deals
+//Store
 router.route('/:id/stores')
 .get(function(req, res, next) { 
 
@@ -152,15 +150,16 @@ router.route('/:id/stores/create')
 })
 .post(function(req, res, next){
 
-  Store.sync()
-  .then(() => Store.create({
+ Store.create({
  
     name: 'Test Deal',
-    address: 'Gulshan Iqbal 13D/1'
+    address: 'Gulshan Iqbal 13D/1',
+    BusinessId : req.params.id,
+    LocationId: 1
 
 
 
-  })).then(store => {
+  }).then(store => {
    res.send(JSON.stringify(store));
  });
 
@@ -268,7 +267,7 @@ router.route('/:id/galleries/create')
 
 
     banner_image: '/abc.png',
-    photos: '/bcd.png, /cde.png',
+    BusinessId: req.params.id
     
   }).then(gallery => {
    res.send(gallery.toJSON());
@@ -397,7 +396,7 @@ router.route('/:id/reviews')
   
   Review.findAll({
     where :{
-      businessId: req.params.id
+      BusinessId: req.params.id
     }
   }).then(function(reviews){
     res.send(JSON.stringify(reviews));  //use this for api testing
@@ -411,41 +410,35 @@ router.route('/:id/reviews/create')
 })
 .post(function(req,res,next){
     
-    Business.findById(req.params.id).then(function(business){
       
    Review.create({
 
-   userEmail : 'rafayck@hotmail.com',
-   BusinessId : req.params.id,
    text:'this is a good business',
    rating: 2,
-   date: new Date()
+   UserEmail : 'rafay@hotmail.com',
+   BusinessId : req.params.id
    
 
 
    }).then(review => {
      res.send(review.toJSON());
-   })
-    .then(console.log(new Date()));
+   });
 
 });
 
    
-});
+router.route('/:bid/reviews/:id')
+.get(function(req, res, next){
+  Review.findAll({
+    where :{
+      BusinessId: req.params.bid,
+      id : req.params.id
+    }
+  }).then(function(reviews){
+    res.send(JSON.stringify(reviews));  //use this for api testing
 
-  router.route('/:bid/reviews/:id')
-  .get(function(req, res, next){
-
-    Review.find({
-      where:{
-        businessId: req.params.bid,
-        id : req.params.id
-      }
-    }).then(function(review){
-      res.send(JSON.stringify(review));
-    })
-
-  })
+  });
+})
   .put(function(req, res, next){
       
     Review.update({

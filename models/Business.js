@@ -17,7 +17,8 @@ module.exports = (sequelize, DataTypes) => {
    Business.hasMany(models.Deal);
    Business.hasMany(models.Review);
    Business.hasOne(models.Gallery);
-   
+   Business.hasMany(models.Store);
+
    Business.belongsTo(models.Category, { foreignKey: { allowNull: false }});
    Business.belongsTo(models.User, { foreignKey: { allowNull: false }});
    Business.belongsTo(models.Membership, { foreignKey: { allowNull: false }});

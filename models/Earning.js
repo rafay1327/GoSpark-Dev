@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
 
 
    Earning.associate = function (models) {
- 	 Earning.hasOne(models.Review, { foreignKey: {allowNull:false}});
+ 	 Earning.belongsTo(models.Review, {foreignKey : { allowNull : false}});
    };
 
 

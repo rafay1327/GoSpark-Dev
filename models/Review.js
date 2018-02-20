@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Review.associate = function (models) {
 	 Review.hasOne(models.Earning);
+	 Review.belongsTo(models.User);
   };
   return Review;
 };

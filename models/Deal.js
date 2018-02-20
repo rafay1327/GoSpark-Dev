@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
    Deal.associate = function (models) {
-    Deal.hasMany(models.Business, { foreignKey: { allowNull: false }});
+    Deal.belongsTo(models.Business, { foreignKey: { allowNull: false }});
 
     Deal.belongsToMany(models.User, { through: 'user_deal', as: 'user' });
    };
