@@ -5,5 +5,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     timestamps:false
   });
+
+
+  Category.associate = function (models) {
+   Category.belongsTo(models.Business, { foreignKey: { allowNull: false }});
+   };
+
   return Category;
 };

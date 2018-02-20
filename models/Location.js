@@ -7,5 +7,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     timestamps:false
   });
+
+   Location.associate = function (models) {
+	  Location.hasMany(models.Store);
+  };
   return Location;
 };

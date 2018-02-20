@@ -45,7 +45,40 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+       BusinessId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Businesses',
+          key: 'id'
+        },
+        allowNull:false
+      },
+       UserEmail: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'Users',
+          key: 'email'
+        },
+        allowNull:false
+      },
+       MembershipId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Memberships',
+          key: 'id'
+        },
+        allowNull:false
+      },
+       CategoryId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Categories',
+          key: 'id'
+        },
+        allowNull:false
       }
+
     });
   },
   down: (queryInterface, Sequelize) => {

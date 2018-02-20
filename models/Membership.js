@@ -7,5 +7,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     
   });
+  Membership.associate = function (models) {
+	  Membership.hasMany(models.Business);
+  };
+
   return Membership;
 };

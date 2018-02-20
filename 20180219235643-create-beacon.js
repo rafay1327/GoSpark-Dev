@@ -7,7 +7,15 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
-      }
+      },
+      StoreId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Stores',
+          key: 'id'
+        },
+        allowNull:false
+      },
     });
   },
   down: (queryInterface, Sequelize) => {

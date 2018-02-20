@@ -5,5 +5,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
   
   });
+
+
+ Gallery.associate = function (models) {
+ 	 Gallery.BelongsTo(models.Business);	
+ };
   return Gallery;
 };

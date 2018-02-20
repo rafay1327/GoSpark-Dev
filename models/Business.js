@@ -11,8 +11,20 @@ module.exports = (sequelize, DataTypes) => {
     opening_days: DataTypes.STRING,
     opening_days: DataTypes.STRING,
     timings: DataTypes.STRING
-  }, {
-  
   });
+
+  Business.associate = function (models) {
+   Business.hasMany(models.Deal);
+   Business.hasMany(models.Review);
+   Business.hasOne(models.Gallery);
+   
+   Business.belongsTo(models.Category, { foreignKey: { allowNull: false }});
+   Business.belongsTo(models.User, { foreignKey: { allowNull: false }});
+   Business.belongsTo(models.Membership, { foreignKey: { allowNull: false }});
+
+   
+
+  };
+
   return Business;
 };

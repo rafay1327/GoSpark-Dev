@@ -6,5 +6,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
    
   });
+
+   Store.associate = function (models) {
+	 Store.hasMany(models.Beacon);
+  };
   return Store;
 };

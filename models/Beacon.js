@@ -4,6 +4,10 @@ module.exports = (sequelize, DataTypes) => {
     timestamps:false
   });
 
+  Beacon.associate = function (models) {
+   Beacon.belongsTo(models.Store, { foreignKey: { allowNull: false }});
+
+  };
   
   return Beacon;
 };

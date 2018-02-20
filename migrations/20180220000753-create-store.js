@@ -1,32 +1,17 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Deals', {
+    return queryInterface.createTable('Stores', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      description: {
-        type: Sequelize.STRING
-      },
-      image: {
-        type: Sequelize.STRING
-      },
       name: {
         type: Sequelize.STRING
       },
-      start_date: {
-        type: Sequelize.DATE
-      },
-      expiry_date: {
-        type: Sequelize.DATE
-      },
-      unit_price: {
-        type: Sequelize.FLOAT
-      },
-      coupon_code: {
+      address: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -36,10 +21,26 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      BusinessId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Businesses',
+          key: 'id'
+        },
+        allowNull:false
+      },
+      LocationId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Locations',
+          key: 'id'
+        },
+        allowNull:false
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Deals');
+    return queryInterface.dropTable('Stores');
   }
 };

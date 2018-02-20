@@ -10,5 +10,10 @@ module.exports = (sequelize, DataTypes) => {
     coupon_code: DataTypes.STRING
   }, {
   });
+
+   Deal.associate = function (models) {
+    Deal.hasMany(models.Business, { foreignKey: { allowNull: false }});
+   };
+
   return Deal;
 };

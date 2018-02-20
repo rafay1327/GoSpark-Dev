@@ -5,5 +5,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     timestamps:false
   });
+
+   Tag.associate = function (models) {
+   
+  };
   return Tag;
 };

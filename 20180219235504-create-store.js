@@ -21,6 +21,22 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      BusinessId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Businesses',
+          key: 'id'
+        },
+        allowNull:false
+      },
+      LocationId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Locations',
+          key: 'id'
+        },
+        allowNull:false
       }
     });
   },
