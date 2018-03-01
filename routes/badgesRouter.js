@@ -1,13 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var Badge = require('../models/badge')
+
+var db = require('../models');
+var Badge = db.Badge;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
 	Badge.findAll()
 	 .then(function(Badge){
     res.send(JSON.stringify(Badge));
-  }); 
+  });
   //res.render('index', { title: 'GoSpark' });
 });
 
@@ -19,7 +21,7 @@ router.route('/create')
 	Badge.create({
 
     name: 'Badge Name',
-    
+
 
   }).then(Badge => {
    res.send(JSON.stringify(Badge));
@@ -38,7 +40,7 @@ router.route('/:id')
 	Badge.update({
 
      name: 'Badge name EDITED',
-   
+
     },
     {
       where: {

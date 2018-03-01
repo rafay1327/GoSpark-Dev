@@ -18,9 +18,9 @@ router.route('/')
   User.findAll()
   .then(function(users){
     res.send(JSON.stringify(users));
-  }); 
-  
-  
+  });
+
+
 });
 
 router.route('/create')
@@ -33,7 +33,7 @@ router.route('/create')
 
 
 User.create({
-   
+
   wishlist_id: 578,
   first_name: 'Hamza',
   last_name: 'Usman',
@@ -42,14 +42,14 @@ User.create({
   gender: 'male',
   date_of_birth: then
 
-  
+
   }).then(user => {
    res.send(user.toJSON());
   });
 
- 
+
   });
-  
+
   // wishlist_id
  router.route('/:email').
  get(function(req, res, next){
@@ -57,8 +57,8 @@ User.create({
   User.findById(req.params.email).then(function(user){
     res.send(user);  //use this for api testing
 
-  }); 
-  
+  });
+
  })
  .delete(function(req, res, next){
 

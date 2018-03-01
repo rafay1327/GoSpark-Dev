@@ -5,10 +5,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     timestamps : false
   });
-  
+
   Badge.associate = function (models) {
-  
+
   };
-  
+
   return Badge;
 };
