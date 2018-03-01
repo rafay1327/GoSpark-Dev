@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 	Tag.findAll()
 	 .then(function(tag){
     res.send(JSON.stringify(tag));
-  }); 
+  });
   //res.render('index', { title: 'GoSpark' });
 });
 
@@ -19,8 +19,8 @@ router.route('/create')
 .post(function(req, res, next){
 	Tag.create({
 
-    description: 'Tag desc example',
-    
+    name: 'Tag desc example',
+
 
   }).then(tag => {
    res.send(JSON.stringify(tag));
@@ -37,9 +37,9 @@ router.route('/:id')
 })
 .put(function(req, res, next){
 	Tag.update({
-     
-    description: 'Test desc EDITED',
-    
+
+    name: 'Test desc EDITED',
+
     },
     {
       where: {

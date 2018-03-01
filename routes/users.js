@@ -23,7 +23,7 @@ router.route('/')
 
 });
 
-router.route('/create')
+router.route('/register')
 .get(function(req, res, next){
 
 	res.render('users/create', {title: "GoSpark | Create User"});

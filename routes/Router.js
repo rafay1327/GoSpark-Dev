@@ -32,9 +32,9 @@ router.route('/')
   Business.findAll().
   then(function(businesses){
     res.send(JSON.stringify(businesses));
-  }); 
+  });
   //res.render('businesses/index', { title: "GoSpark | Businesses" });
-  
+
 });
 
 router.route('/create')
@@ -46,7 +46,7 @@ router.route('/create')
 .post(function(req, res, next){
 
   Business.create({
-   
+
     name: 'Test Business 2',
     description: 'Test business desc',
     contact_no: '464652348',
@@ -58,9 +58,9 @@ router.route('/create')
     timings: '9-9',
     CategoryId : 1,
     MembershipId: 1,
-    UserEmail: 'rafay@yahoo.com'
-    
- 
+    UserEmail: 'rafay@hotmail.com'
+
+
 
 
   }).then(business => {
@@ -79,14 +79,14 @@ router.route('/create')
     .then(function(business){
     res.send(JSON.stringify(business));  //use this for api testing
 
-    }); 
+    });
   // res.render('businesses/single', { _id : req.params.id}); uncomment this when done with api testing
   })
   .put(function(req, res, next){
-      
+
     Business.update({
     UserEmail: 'rafayck@hotmail',
-    CategoryId : 1, 
+    CategoryId : 1,
     MembershipId: 3,
     name: 'Test Business EDITED',
     description: 'Test business desc EDITED',
@@ -125,17 +125,17 @@ router.route('/create')
 
 //Store
 router.route('/:id/stores')
-.get(function(req, res, next) { 
+.get(function(req, res, next) {
 
 
  Store.findAll({
   where: {
-    BusinessId : req.params.id 
+    BusinessId : req.params.id
   }
 }).then(function(store){
     res.send(JSON.stringify(store));  //use this for api testing
 
-  }); 
+  });
 
   //res.render('businesses/deals/index', { title: "GoSpark Deals" });
 
@@ -151,7 +151,7 @@ router.route('/:id/stores/create')
 .post(function(req, res, next){
 
  Store.create({
- 
+
     name: 'Test Deal',
     address: 'Gulshan Iqbal 13D/1',
     BusinessId : req.params.id,
@@ -224,7 +224,7 @@ router.route('/:id/galleries')
        else res.send(JSON.stringify(gallery.photos));
 
      });
-    }); 
+    });
 });
 
 router.route('/:id/galleries/create')
@@ -246,7 +246,7 @@ router.route('/:id/galleries/create')
 
 //     callback(null, raw.toString('hex') + path.extname(file.originalname));
 //   });
-  
+
 //     upload.single('avatar'), (req, res) => {
 //     if (!req.file) {
 //       console.log("No file received");
@@ -268,7 +268,7 @@ router.route('/:id/galleries/create')
 
     banner_image: '/abc.png',
     BusinessId: req.params.id
-    
+
   }).then(gallery => {
    res.send(gallery.toJSON());
  });
@@ -282,7 +282,7 @@ router.route('/:bid/galleries/:id')
 
    res.send(JSON.stringify(gallery.banner_image));
 
- }); 
+ });
 })
 .delete(function(req, res, next){
 
@@ -317,7 +317,7 @@ router.route('/:id/deals/create')
 
 })
 .post(function(req, res, next){
-  
+
   Deal.create({
 
    BusinessId : req.params.id,
@@ -351,7 +351,7 @@ router.route('/:bid/deals/:id')
  .then(function(deal){
   res.send(JSON.stringify(deal));  //use this for api testing
 
-}); 
+});
 })
 .put(function(req, res, next){
 
@@ -393,7 +393,7 @@ router.route('/:bid/deals/:id')
 
 router.route('/:id/reviews')
 .get(function(req, res, next) {
-  
+
   Review.findAll({
     where :{
       BusinessId: req.params.id
@@ -409,15 +409,15 @@ router.route('/:id/reviews/create')
   res.render('reviews/create');
 })
 .post(function(req,res,next){
-    
-      
+
+
    Review.create({
 
    text:'this is a good business',
    rating: 2,
    UserEmail : 'rafay@hotmail.com',
    BusinessId : req.params.id
-   
+
 
 
    }).then(review => {
@@ -426,7 +426,7 @@ router.route('/:id/reviews/create')
 
 });
 
-   
+
 router.route('/:bid/reviews/:id')
 .get(function(req, res, next){
   Review.findAll({
@@ -440,14 +440,14 @@ router.route('/:bid/reviews/:id')
   });
 })
   .put(function(req, res, next){
-      
+
     Review.update({
      userEmail : 'rafayck@hotmail.com',
      BusinessId : req.params.bid,
      text:'this is a good business EDITED',
      rating: 4,
      date: new Date()
-     
+
     },
     {
       where: {
