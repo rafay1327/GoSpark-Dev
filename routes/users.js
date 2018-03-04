@@ -1,9 +1,7 @@
-
 var express = require('express');
 var router = express.Router();
 var Sequelize = require('sequelize');
 var mysql = require('mysql2');
-var bcrypt = require('bcryptjs');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var authController = require('../controllers/authcontroller.js');
@@ -13,7 +11,7 @@ var User = db.User;
 var path = require('path');
 const { URL } = require('url');
 
- module.exports  = function(router, passport) {
+
 
 //Users
 router.route('/')
@@ -32,13 +30,6 @@ router.route('/login')
 .get(function(req, res,next){
   res.render('users/login', { message: req.flash('loginMessage') });
 });
-// .post(passport.authenticate('local', { successRedirect: '/', failureRedirect: '/users/login', failureFlash: true}),
-//
-//   function(req, res) {
-//     console.log('successful')
-//        res.redirect('/users/' + req.user.email);
-//   });
-
 
 router.post('/login', passport.authenticate('local-login', {
             successRedirect : '/', // redirect to the secure profile section
@@ -49,10 +40,15 @@ router.post('/login', passport.authenticate('local-login', {
 ));
 
 router.route('/logout')
-.get(function(req, res, next){
-  req.logout();
-  res.redirect('/');
-})
+.get(function(req, res) {
+
+    req.session.destroy(function(err) {
+
+        res.redirect('/users/login');
+
+    });
+
+});
 
 router.route('/register')
 .get(function(req, res, next){
@@ -61,36 +57,14 @@ router.route('/register')
 
 });
 router.post('/register', passport.authenticate('local-signup', {
-            successRedirect : '/users/login', // redirect to the secure profile section
-            failureRedirect : '/users/register', // redirect back to the signup page if there is an error
-            failureFlash : true // allow flash messages
-}));
+        successRedirect: '/',
+
+        failureRedirect: '/users/login'
+    }
+
+));
 
 
- // .post(function(req, res, next){
- //
- //
- // var newUser = new User({
- //
- //  first_name: req.body.first_name,
- //  last_name: req.body.last_name,
- //  email: req.body.email,
- //  password : req.body.password,
- //  gender: req.body.gender,
- //  date_of_birth: req.body.date_of_birth
- //
- //  });
- //
- //  User.createUser(newUser, function(err, user){
- //    if (err) throw err;
- //    console.log(user);
- //  })
- //
- //  req.flash('success_msg', 'You are now registed. Login to you new Account!');
- //  res.redirect('/users/login');
- //
- //
- //  });
 
   // wishlist_id
  router.route('/:email').
@@ -113,12 +87,14 @@ router.post('/register', passport.authenticate('local-signup', {
         res.render('users/index');
  });
 
- // route middleware to ensure user is logged in
+//route to middleware isLoggedin
  function isLoggedIn(req, res, next) {
-     if (req.isAuthenticated())
-         return next();
 
-     res.redirect('/');
- }
+    if (req.isAuthenticated())
 
-};
+        return next();
+
+    res.redirect('/users/login');
+
+}
+module.exports = router;

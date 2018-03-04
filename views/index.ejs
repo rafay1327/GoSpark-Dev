@@ -43,6 +43,20 @@
       </div>
     </div>
   </nav>
+
+  <div class="container">
+        <% if(error && error.length > 0){ %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <% if(success_msg && success_msg.length > 0){ %>
+            <div class="alert alert-success" role="alert">
+                <%= success_msg %>
+            </div>
+        <% } %>
+    </div>
+
   <div class="pt-5 py-5 bg-dark" style="">
     <div class="container mt-5 pt-5 py-0">
       <div class="row py-0">

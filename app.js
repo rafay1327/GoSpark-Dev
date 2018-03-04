@@ -13,7 +13,7 @@ var expressValidator = require('express-validator');
 var app = express();
 
 var index = require('./routes/index');
-var users = require('./routes/users')(app, passport);
+var users = require('./routes/users');
 var Router = require('./routes/router');
 var categoriesRouter = require('./routes/categoriesRouter');
 var membershipsRouter = require('./routes/membershipRouter');
@@ -24,8 +24,6 @@ var badgesRouter = require('./routes/badgesRouter');
 
 // require('./config/passport')(passport); // pass passport for configuration
 var models = require('./models');
-require('./config/passport.js')(passport, models.User);
-
 
 
 // view engine setup
@@ -39,7 +37,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
-
+require('./config/passport.js')(passport, models.User);
 
 app.use(session({
   secret: 'secret',

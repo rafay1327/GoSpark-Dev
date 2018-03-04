@@ -5,14 +5,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-
+  <link rel="stylesheet" href=".css">
   <link rel="stylesheet" href="/css/theme.css"> </head>
 
 <body class="bg-dark my-5 h-100">
   <nav class="navbar navbar-expand-md navbar-dark bg-light py-1 fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="/images/logo.png" width="" height="40" class="d-inline-block align-top mx-auto" alt=""> </a>
+        <img src="images/logo.png" width="" height="40" class="d-inline-block align-top mx-auto" alt=""> </a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
         <ul class="navbar-nav">
@@ -31,7 +31,13 @@
             <a class="nav-link text-dark" href="#reviews">Contact Us</a>
           </li>
         </ul>
+        <!--Check for Authentication -->
+        <% if  (!user) { %>
         <a class="btn navbar-btn text-white mx-2 btn-primary btn-sm" href="/users/login">Login</a>
+        <% } else{ %>
+            <a class="btn navbar-btn text-white mx-2 btn-primary btn-sm" href="users/logout">Logout</a>
+        <% }%>
+        <!--these buttons -->
         <a class="btn navbar-btn mx-2 border border-dark btn-sm btn-light text-dark" href="add-listing.html">Add a Listing</a>
         <div class="btn-group border border-light btn-group-sm">
           <button class="btn dropdown-toggle btn-outline-dark text-dark" data-toggle="dropdown" aria-expanded="false"> Karachi</button>
@@ -39,8 +45,7 @@
             <a class="dropdown-item" href="#">Action</a>
             <div class="dropdown-divider"> </div>
             <a class="dropdown-item" href="#">Separated link</a>
-          </div>    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+          </div>
         </div>
       </div>
     </div>
@@ -52,9 +57,6 @@
         <div class="col-md-6">
           <h1 class="text-gray-dark text-center">REGISTER</h1>
           <p class="lead mb-4 text-center">Enter your details below to become a part of GoSpark</p>
-          <% if (message.length > 0) { %>
-              <div class="alert alert-danger"><%= message %></div>
-          <% } %>
           <form class="" method="post" action="/users/register">
             <div class="form-group"><label for="exampleInputEmail1">First Name</label>
               <div class="input-group">
@@ -76,7 +78,7 @@
                 <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fa fa-lg mt-1 fa-key"></i></span></div>
                 <input type="password" name="password" class="form-control" id="inlineFormInputGroup" placeholder="Password"> </div>
             </div>
-            <div class="form-group"><label for="exampleInputEmail1">Confirm Passwort</label>
+            <div class="form-group"><label for="exampleInputEmail1">Confirm Password</label>
               <div class="input-group">
                 <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fa fa-lg mt-1 fa-key"></i></span></div>
                 <input type="password" class="form-control" id="inlineFormInputGroup" placeholder="Confirm Password"> </div>
@@ -84,9 +86,9 @@
             <div class="form-group"><label for="exampleInputEmail1">Gender</label>
               <div class="input-group">
                 <div class="input-group-prepend"><span class="input-group-text" id="basic-addon1"><i class="fa fa-lg mt-1 fa-key"></i></span></div>
-                <select class="form-control" name="gender">
+                <select class="" name="gender">
                   <option value="Male">Male</option>
-                  <option value="Female">Female</option>
+                  <option value="Gender">Gender</option>
                 </select> </div>
             </div>
             <div class="form-group"><label for="exampleInputEmail1">Date of Birth</label>
