@@ -7,9 +7,9 @@
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": "rafay",
-    "database": "gosparkdb_new",
+    "username": "gs_admin",
+    "password": "GSAdmin9642",
+    "database": "gs_staging",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

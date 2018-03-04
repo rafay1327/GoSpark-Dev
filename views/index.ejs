@@ -1,5 +1,313 @@
-<% include ./layout.ejs %>
+<!DOCTYPE html>
+<html>
 
-  <h1><%= title %></h1>
-  <p> Welcome to <%= title %> | Home</p>
-  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/theme.css" type="text/css"> </head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark py-1">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="images/logo.png" width="" height="40" class="d-inline-block align-top mx-auto" alt=""> </a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+      <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="#features">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Explore</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" href="#reviews">Contact Us</a>
+          </li>
+        </ul>
+        <a class="btn navbar-btn text-white mx-2 btn-primary" href="#download">Login</a>
+        <a class="btn navbar-btn mx-2 btn-dark text-info border border-light" href="#download">Add a Listing</a>
+        <div class="btn-group border border-light">
+          <button class="btn dropdown-toggle text-info btn-outline-dark" data-toggle="dropdown" aria-expanded="false"> Karachi</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <div class="dropdown-divider"> </div>
+            <a class="dropdown-item" href="#">Separated link</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="pt-5 py-5 bg-dark" style="">
+    <div class="container mt-5 pt-5 py-0">
+      <div class="row py-0">
+        <div class="col-md-12 my-5 text-lg-left text-center align-self-center">
+          <h1 class="text-light display text-center">Discover the Businesses &amp; Write a Review</h1>
+          <div class="row">
+            <div class="col-md-12">
+              <p class="lead text-center text-secondary py-1">SIGNUP &amp; GET YOUR BUSINESS FEATURED NOW!</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <!--<form class="form-inline px-1"> -->
+            </div>
+            <div class="col-md-8 col-lg-8">
+              <div class="input-group">
+                <input type="text" class="form-control-lg form-control text-info" width="300" placeholder="Search" id="inlineFormInputGroupUsername2">
+                <div class="input-group-append">
+                  <button type="button" class="btn dropdown-toggle btn-light text-info" aria-expanded="false" aria-haspopup="true" data-toggle="dropdown"> Categories </button>
+                  <button class="btn btn-primary text-white" type="button">Search</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5 d-flex flex-column-reverse justify-content-center align-items-center align-self-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="title-heading text-primary text-center" id="title">Go Spark Top Deals</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <p class="lead text-center text-info">Explore some of the best deals from around the city from our partners and friends.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <img class="deals" src="images/hotel.jpg" width="250" height="325"> </div>
+        <div class="col-md-3">
+          <img class="deals" src="images/clothing.jpg" width="250" height="325"> </div>
+        <div class="col-md-3">
+          <img class="deals" src="images/food.jpg" width="250" height="325"> </div>
+        <div class="col-md-3">
+          <img class="deals" src="images/health.jpg" width="250" height="325"> </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center py-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="title-heading text-primary text-center">Featured Businesess</h1>
+          <p class="lead">Explore the businesses, write reviews and get bonus coins.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="h-25 px-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <a class="btn navbar-btn ml-2 w-100 btn-light h-100 mx-auto text-dark text-center active" href="food-businesses" style="" target="" data-toggle="modal">
+            <img src="images/cutlery.svg" alt="health" class="my-3" width="100" height="100">
+            <br><b>Food<br></b>
+            <br> </a>
+        </div>
+        <div class="col-md-2">
+          <a class="btn navbar-btn ml-2 w-100 btn-light h-100 mx-auto text-dark text-center" href="#" style="">
+            <img src="images/polo.svg" alt="health" class="my-3" width="100" height="100">
+            <br><b>Clothing</b>
+            <br> </a>
+        </div>
+        <div class="col-md-2">
+          <a class="btn navbar-btn ml-2 w-100 btn-light h-100 mx-auto text-dark text-center" href="#" style="">
+            <img src="images/hotel.svg" alt="health" class="my-3" width="100" height="100">
+            <br><b>Hotels</b>
+            <br> </a>
+        </div>
+        <div class="col-md-2">
+          <a class="btn navbar-btn ml-2 w-100 btn-light h-100 mx-auto text-dark text-center" href="#" style="">
+            <img src="images/sofa.svg" alt="health" class="my-3" width="100" height="100">
+            <br><b>Furniture</b>
+            <br> </a>
+        </div>
+        <div class="col-md-2">
+          <a class="btn navbar-btn ml-2 w-100 btn-light h-100 mx-auto text-dark text-center" href="#" style="">
+            <img src="images/heart.svg" alt="health" class="my-3" width="100" height="100">
+            <br><b>Health</b>
+            <br> </a>
+        </div>
+        <div class="col-md-2">
+          <a class="btn navbar-btn ml-2 w-100 btn-light mx-auto text-dark text-center h-100" href="#">
+            <img src="images/light-bulb.svg" alt="health" class="my-3" width="100" height="100">
+            <br><b class="">Electronics<br></b>
+            <br> </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5 text-center bg-light my-5" id="food-businesses">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-6 p-1">
+          <div class="card my-4">
+            <div class="business-container">
+              <img class="business-image" src="images/1200px-KFC_logo.svg.png" alt="Avatar" style="width:100%">
+              <a class="btn w-100 btn-block btn-secondary btn-sm" href="#"><i class="fa fa-fw fa-pencil"></i>Write Review</a>
+              <div class="business-middle">
+                <div class="business-button-text w-100 h-25 text-center p-2" href="#">View Profile</div>
+              </div>
+            </div>
+          </div>
+          <div class="row"> </div>
+        </div>
+        <div class="col-md-3 col-6 p-1">
+          <div class="card my-4">
+            <div class="business-container">
+              <img class="business-image" src="images/1200px-KFC_logo.svg.png" alt="Avatar" style="width:100%">
+              <a class="btn w-100 btn-block btn-secondary btn-sm" href="#"><i class="fa fa-fw fa-pencil"></i>Write Review</a>
+              <div class="business-middle">
+                <div class="business-button-text w-100 h-25 text-center p-2" href="#">View Profile</div>
+              </div>
+            </div>
+            <div class="row"> </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6 p-1">
+          <div class="card my-4">
+            <div class="business-container">
+              <img class="business-image" src="images/1200px-KFC_logo.svg.png" alt="Avatar" style="width:100%">
+              <a class="btn w-100 btn-block btn-secondary btn-sm" href="#"><i class="fa fa-fw fa-pencil"></i>Write Review</a>
+              <div class="business-middle">
+                <div class="business-button-text w-100 h-25 text-center p-2" href="#">View Profile</div>
+              </div>
+            </div>
+            <div class="row"> </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6 p-1">
+          <div class="card my-4">
+            <div class="business-container">
+              <img class="business-image" src="images/1200px-KFC_logo.svg.png" alt="Avatar" style="width:100%">
+              <a class="btn w-100 btn-block btn-secondary btn-sm" href="#"><i class="fa fa-fw fa-pencil"></i>Write Review</a>
+              <div class="business-middle">
+                <div class="business-button-text w-100 h-25 text-center p-2" href="#">View Profile</div>
+              </div>
+            </div>
+            <div class="row"> </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-6 p-1"></div>
+        <div class="col-md-4 col-6 p-1">
+          <a class="btn btn-lg btn-primary mx-1 w-50" href="#">View All
+            <br> </a>
+        </div>
+        <div class="col-md-4 col-6 p-1"></div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5 text-white opaque-overlay bg-dark" style="">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-gray-dark text-secondary text-center w-100">So, What's Your Rating on GoSpark?</h1>
+          <p class="lead mb-4 text-center">LIST YOUR BUSINESS TODAY</p>
+          <div class="row">
+            <div class="col-md-4 col-6 p-1"></div>
+            <div class="col-md-4 col-6 p-2">
+              <a class="btn btn-outline-light m-2 btn-lg btn-block" href="#">Add to GoSpark
+                <br> </a>
+            </div>
+            <div class="col-md-4 col-6 p-1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center bg-light py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-primary">Most Recent Reviews</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 p-4">
+          <img class="img-fluid d-block rounded-circle mx-auto" src="https://pingendo.github.io/templates/sections/assets/test_meow.jpg">
+          <p class="my-4"><i>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</i></p>
+          <p><b>Meow</b>
+            <br>Senior developer</p>
+        </div>
+        <div class="col-md-4 p-4">
+          <img class="img-fluid d-block rounded-circle mx-auto" src="https://pingendo.github.io/templates/sections/assets/test_fish.jpg">
+          <p class="my-4"><i>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec. </i></p>
+          <p><b>J. L. Fish</b>
+            <br>UI designer</p>
+        </div>
+        <div class="col-md-4 p-4">
+          <img class="img-fluid d-block rounded-circle mx-auto" src="https://pingendo.github.io/templates/sections/assets/test_carlito.jpg">
+          <p class="my-4"><i>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Cum sociis natoque penatibus et magnis dis parturient montes.</i></p>
+          <p><b>Carlito</b>
+            <br>Boss</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center bg-dark" style="background-image: url(&quot;none&quot;);">
+    <div class="container-fluid py-3 border-secondary bg-dark">
+      <div class="row w-50 mx-auto">
+        <div class="col-md-3"><i class="fa fa-facebook fa-3x"></i></div>
+        <div class="col-md-3"><i class="fa fa-3x fa-twitter"></i></div>
+        <div class="col-md-3"><i class="fa fa-3x fa-youtube-play"></i></div>
+        <div class="col-md-3"><i class="fa fa-3x fa-instagram"></i></div>
+      </div>
+    </div>
+  </div>
+  <div class="bg-dark text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mt-3">
+          <ul class="nav w-100 text-light">
+            <li class="nav-item">
+              <a class="nav-link text-light" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active text-light" href="#">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="#">Privacy Policy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="#">Terms of Service</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-light" href="#">FAQs</a>
+            </li>
+            <a class="btn btn-dark border border-light btn-lg m-2" href="#"><i class="fa fa-fw fa-apple"></i>App Store</a>
+            <a class="btn m-2 btn-dark border border-light btn-lg" href="#"><i class="fa fa-fw fa-android"></i>Google Play</a>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 mt-3">
+          <p class="text-primary text-left"><b>© Copyright 2017 GoSpark- All rights reserved. </b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 10px;right:10px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:180px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo&nbsp;&nbsp;
+    <img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16">
+  </pingendo>
+</body>
+
+</html>
