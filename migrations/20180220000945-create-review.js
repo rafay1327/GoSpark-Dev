@@ -22,11 +22,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      UserEmail: {
-        type: Sequelize.STRING,
+      UserId: {
+        type: Sequelize.INTEGER,
         references: {
           model: 'Users',
-          key: 'email'
+          key: 'id'
         },
         allowNull:false
       },

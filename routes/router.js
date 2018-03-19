@@ -58,7 +58,7 @@ router.route('/create')
     timings: '9-9',
     CategoryId : 1,
     MembershipId: 1,
-    UserEmail: 'rafay@hotmail.com'
+    UserId : 2
 
 
 
@@ -415,7 +415,7 @@ router.route('/:id/reviews/create')
 
    text:'this is a good business',
    rating: 2,
-   UserEmail : 'rafay@hotmail.com',
+   UserId : 2,
    BusinessId : req.params.id
 
 
@@ -442,7 +442,7 @@ router.route('/:bid/reviews/:id')
   .put(function(req, res, next){
 
     Review.update({
-     userEmail : 'rafayck@hotmail.com',
+     UserId : 1,
      BusinessId : req.params.bid,
      text:'this is a good business EDITED',
      rating: 4,
