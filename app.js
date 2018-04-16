@@ -20,7 +20,7 @@ var membershipsRouter = require('./routes/membershipRouter');
 var tagsRouter = require('./routes/tagsRouter');
 var locationsRouter = require('./routes/locationsRouter');
 var badgesRouter = require('./routes/badgesRouter');
-
+var dealsRouter= require('./routes/dealsRouter');
 
 // require('./config/passport')(passport); // pass passport for configuration
 var models = require('./models');
@@ -35,6 +35,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 require('./config/passport.js')(passport, models.User);
@@ -73,7 +75,7 @@ app.use('/memberships', membershipsRouter);
 app.use('/tags', tagsRouter);
 app.use('/locations', locationsRouter);
 app.use('/badges', badgesRouter);
-
+app.use('/deals', dealsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

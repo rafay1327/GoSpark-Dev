@@ -313,7 +313,7 @@ router.route('/:id/deals')
 router.route('/:id/deals/create')
 .get(function(req, res, next){
 
-  res.render('deals/create');
+  res.render('deals/create', { title : 'Create New Deal'});
 
 })
 .post(function(req, res, next){

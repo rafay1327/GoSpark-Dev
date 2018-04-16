@@ -4,7 +4,7 @@ var Sequelize = require('sequelize');
 var mysql = require('mysql2');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var authController = require('../controllers/authcontroller.js');
+
 var db = require('../models');
 var User = db.User;
 
