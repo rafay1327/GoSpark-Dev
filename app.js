@@ -21,7 +21,7 @@ var tagsRouter = require('./routes/tagsRouter');
 var locationsRouter = require('./routes/locationsRouter');
 var badgesRouter = require('./routes/badgesRouter');
 var dealsRouter= require('./routes/dealsRouter');
-
+var analyticsRouter = require('./routes/analytics');
 // require('./config/passport')(passport); // pass passport for configuration
 var models = require('./models');
 
@@ -76,6 +76,7 @@ app.use('/tags', tagsRouter);
 app.use('/locations', locationsRouter);
 app.use('/badges', badgesRouter);
 app.use('/deals', dealsRouter);
+app.use('/analytics', analyticsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

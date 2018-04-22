@@ -56,7 +56,7 @@ router.route('/create')
     website: 'www.facebook.com',
     opening_days: 'Mon, Tue , Thurs, Fri',
     timings: '9-9',
-    CategoryId : 1,
+    category_name: 'Miscellaneous',
     MembershipId: 1,
     UserId : 2
 
@@ -488,13 +488,15 @@ router.route('/:id/photos/add')
     image : '/abcdef.png'
   })
   .then(photo => {
-    res.send(photo.toJSON());
+    photo.addBusiness(req.params.id)
+    .then(photo => {
+      res.send(photo);
+    });
   });
 });
 router.route('/:bid/photos/:id')
   .get(function(req, res, next) {
-    var obj = Photo.findOne({where : {id: req.params.id}});
-    console.log(obj);
+
     Photo.findOne({ where: { id: req.params.id }, include: ['business'] })
     .then(function(photo){
       res.send(JSON.stringify(photo));
@@ -502,10 +504,10 @@ router.route('/:bid/photos/:id')
 
   })
   .put(function(req, res, next) {
-       Photo.findOne({ where: { id: req.params.id } })
-        .then(function(photo) {
-          res.send(photo.addBusiness(req.params.bid));
-        });
+       // Photo.findOne({ where: { id: req.params.id } })
+       //  .then(function(photo) {
+       //
+       //  });
   })
   .delete(function(req, res, next){
 
@@ -516,6 +518,6 @@ router.route('/:bid/photos/:id')
         }).then(photo => {
        res.send(JSON.stringify(photo));
       });
-
   });
+
 module.exports = router;

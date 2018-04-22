@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Businesses to Categories</title>
+</head>
+<body>
+
+   <center>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+    <div style ="width: 900px; height: 500px;">
+    <div> <h1>Total Businesses registered on GoSpark: <%= businesses.length%></h1> </div>
+    <canvas id ="lineChart" height="500" width="900"></canvas>
+
+     </div> 
+
+    </section>
+    </center>
+<script scr="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.1/Chart.bundle.js"></script>
+<script scr="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.1/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.1/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.1/Chart.min.js"></script>
+  <%
+    var clothing=0,food=0,super_store=0,others=0;
+ businesses.forEach(function(obj){
+    if(obj.category_name==="Clothing"){
+        clothing++;
+    }
+	else if(obj.category_name=="Food"){
+		food++;
+	}	
+	else if(obj.category_name=="Super Store"){
+		super_store++;
+	}
+    else{
+      others++;
+    }
+  });
+   %>
+  <script type="text/javascript">
+ 
+  const CHART = document.getElementById("lineChart");
+  let lineChart = new Chart(CHART, {
+    type : 'bar',
+    data: {
+        labels: ["Clothing", "Food", "Super Store", "Other"],
+        
+        datasets: [{
+            label: '# of Businesses belonging to each Category',
+            data: [<%= clothing %>,<%= food %>, <%=super_store%>, <%= others %>],
+            backgroundColor: [
+                'rgba(255, 159, 64, 1)',
+                'rgb(244, 69, 66  )',
+                'rgba(255, 100, 120, 1)',
+                'rgba(255, 140, 64, 1)',
+                
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options : {
+      scales: {
+        yAxes:  [{
+          ticks: {
+            beginAtZero: true,
+            stepSize: 1,
+          }
+        }]
+      }
+    }
+  });
+  console.log(CHART);
+</script>
+
+
+</body>
+</html>
