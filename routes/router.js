@@ -18,8 +18,8 @@ Earning = db.Earning,
 Review = db.Review,
 Location = db.Location,
 User = db.User,
-Membership = db.Membership;
-
+Membership = db.Membership,
+Photo = db.Photo;
 const { URL } = require('url');
 
 
@@ -118,9 +118,9 @@ router.route('/create')
       }
 
     });
-    res.render('businesses/index');
-  });
+    res.redirect('/businesses/index');
 
+  });
 
 
 //Store
@@ -260,41 +260,40 @@ router.route('/:id/galleries/create')
 //         success: true
 //       })
 //     }
-//   };
+//   };render
 
-
-  Gallery.create({
-
-
-    banner_image: '/abc.png',
-    BusinessId: req.params.id
-
-  }).then(gallery => {
-   res.send(gallery.toJSON());
- });
-
-});
-router.route('/:bid/galleries/:id')
-.get(function(req, res, next){
-
-  Gallery.findById(req.params.id)
-  .then(function(gallery){
-
-   res.send(JSON.stringify(gallery.banner_image));
-
- });
-})
-.delete(function(req, res, next){
-
-  Gallery.destroy({
-    where: {
-      id: req.params.id
-    }
-
-  })
-  .then(function(gallery){
-    res.send(JSON.stringify(gallery));
-  });
+//CHANG TO PHOTOS
+// Gallery.create({
+//
+//     banner_image: '/abc.png',
+//     BusinessId: req.params.id
+//
+//   }).then(gallery => {
+//    res.send(gallery.toJSON());
+//  });
+//
+// });
+// router.route('/:bid/galleries/:id')
+// .get(function(req, res, next){
+//
+//   Gallery.findById(req.params.id)
+//   .then(function(gallery){
+//
+//    res.send(JSON.stringify(gallery.banner_image));
+//
+//  });
+// })
+// .delete(function(req, res, next){
+//
+//   Gallery.destroy({
+//     where: {
+//       id: req.params.id
+//     }
+//
+//   })
+//   .then(function(gallery){
+//     res.send(JSON.stringify(gallery));
+//   });
 });
 
 //Deals
@@ -471,5 +470,52 @@ router.route('/:bid/reviews/:id')
   });
 
   });
+//Photo routes to be created
+router.route('/:id/photos')
+.get(function(req, res, next){
+  Photo.findAll({})
+  .then(function(photos){
+    res.send(JSON.stringify(photos));
+  })
+});
 
+router.route('/:id/photos/add')
+.get(function(req, res, next){
+  res.render('photos/add');
+})
+.post(function(req, res, next){
+  Photo.create({
+    image : '/abcdef.png'
+  })
+  .then(photo => {
+    res.send(photo.toJSON());
+  });
+});
+router.route('/:bid/photos/:id')
+  .get(function(req, res, next) {
+    var obj = Photo.findOne({where : {id: req.params.id}});
+    console.log(obj);
+    Photo.findOne({ where: { id: req.params.id }, include: ['business'] })
+    .then(function(photo){
+      res.send(JSON.stringify(photo));
+    });
+
+  })
+  .put(function(req, res, next) {
+       Photo.findOne({ where: { id: req.params.id } })
+        .then(function(photo) {
+          res.send(photo.addBusiness(req.params.bid));
+        });
+  })
+  .delete(function(req, res, next){
+
+        Photo.destroy({
+          where:{
+            id : req.params.id
+          }
+        }).then(photo => {
+       res.send(JSON.stringify(photo));
+      });
+
+  });
 module.exports = router;

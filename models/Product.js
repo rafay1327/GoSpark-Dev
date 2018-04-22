@@ -6,12 +6,12 @@ module.exports = (sequelize, DataTypes) => {
     price: DataTypes.FLOAT,
     tagline: DataTypes.STRING
   }, {
-    
+
   });
 
    Product.associate = function (models) {
-
-    Product.belongsToMany(models.product_category, { through: 'product_pcategory', as: 'product_category' });
+      Product.belongsToMany(models.ProductCategory, { through: 'product_category', as: 'productcategory' });
+  
    };
 
   return Product;

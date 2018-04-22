@@ -1,15 +1,15 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Galleries', {
+    return queryInterface.createTable('Photos', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      banner_image: {
-        type: Sequelize.STRING
+      image: {
+        type: Sequelize.BLOB
       },
       createdAt: {
         allowNull: false,
@@ -18,18 +18,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-       BusinessId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Businesses',
-          key: 'id'
-        },
-        allowNull:false
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Galleries');
+    return queryInterface.dropTable('Photos');
   }
 };

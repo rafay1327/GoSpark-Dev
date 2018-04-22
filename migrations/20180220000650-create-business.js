@@ -38,6 +38,9 @@ module.exports = {
       timings: {
         type: Sequelize.STRING
       },
+      category_name:{
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -58,14 +61,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'Memberships',
-          key: 'id'
-        },
-        allowNull:false
-      },
-       CategoryId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Categories',
           key: 'id'
         },
         allowNull:false
