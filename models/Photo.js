@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.BLOB
   }, {});
   Photo.associate = function(models) {
-    Photo.belongsToMany(models.Business, {through: 'Business_Photo', as: 'business'});
+    Photo.belongsTo(models.Business, {foreignKey: {allowNull : false}});
 
   };
   return Photo;

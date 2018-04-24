@@ -20,13 +20,14 @@ router.route('/create')
 .post(function(req, res, next){
 	Category.create({
 
-    name: 'Category name example',
+    name: 'Super Store',
     
 
   }).then(category => {
    res.send(JSON.stringify(category));
  });
-
+  
+  
 });
 router.route('/:id')
 .get(function(req, res, next){

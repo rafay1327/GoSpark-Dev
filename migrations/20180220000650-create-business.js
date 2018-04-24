@@ -38,8 +38,9 @@ module.exports = {
       timings: {
         type: Sequelize.STRING
       },
-      category_name:{
-        type: Sequelize.STRING
+      isFeatured:{
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,

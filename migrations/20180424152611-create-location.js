@@ -8,14 +8,19 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      region: {
-        type: Sequelize.STRING
+      lattitude: {
+        type: Sequelize.FLOAT
       },
-      city: {
-        type: Sequelize.STRING
+      longitude: {
+        type: Sequelize.FLOAT
       },
-      country: {
-        type: Sequelize.STRING
+      BusinessId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Businesses',
+          key: 'id'
+        },
+        allowNull:false
       }
     });
   },

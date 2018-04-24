@@ -19,6 +19,7 @@ Review = db.Review,
 Location = db.Location,
 User = db.User,
 Membership = db.Membership,
+Product = db.Product
 Photo = db.Photo;
 const { URL } = require('url');
 
@@ -56,9 +57,9 @@ router.route('/create')
     website: 'www.facebook.com',
     opening_days: 'Mon, Tue , Thurs, Fri',
     timings: '9-9',
-    category_name: 'Miscellaneous',
+    isFeatured : false,
     MembershipId: 1,
-    UserId : 2
+    UserId : 1
 
 
 
@@ -66,6 +67,13 @@ router.route('/create')
   }).then(business => {
    res.send(JSON.stringify(business));
  });
+  // .then(business => {
+  //   business.addCategory(req.params.id)
+  //   .then(business => {
+  //     res.send(business);
+  //   });
+  // });
+
 
   // res.redirect('/businesses');
 
@@ -473,7 +481,7 @@ router.route('/:bid/reviews/:id')
 //Photo routes to be created
 router.route('/:id/photos')
 .get(function(req, res, next){
-  Photo.findAll({})
+  Photo.findAll({where: { BusinessId : req.params.id }})
   .then(function(photos){
     res.send(JSON.stringify(photos));
   })
@@ -485,29 +493,34 @@ router.route('/:id/photos/add')
 })
 .post(function(req, res, next){
   Photo.create({
-    image : '/abcdef.png'
+    image : '/abcdef.png',
+    BusinessId: req.params.id
   })
-  .then(photo => {
-    photo.addBusiness(req.params.id)
-    .then(photo => {
-      res.send(photo);
-    });
-  });
+  .then(function(photo){
+    res.send(photo.toJSON());
+  })
 });
 router.route('/:bid/photos/:id')
   .get(function(req, res, next) {
 
-    Photo.findOne({ where: { id: req.params.id }, include: ['business'] })
+    Photo.findOne({ where: { id: req.params.id }})
     .then(function(photo){
       res.send(JSON.stringify(photo));
     });
 
   })
   .put(function(req, res, next) {
-       // Photo.findOne({ where: { id: req.params.id } })
-       //  .then(function(photo) {
-       //
-       //  });
+    Photo.update({
+    image : '/abcdefgsdas.png',
+    
+  },{
+      where: {
+          id : req.params.id
+      }
+    })
+  .then(function(photo){
+    res.send(JSON.stringify(photo));
+  })
   })
   .delete(function(req, res, next){
 
@@ -519,5 +532,150 @@ router.route('/:bid/photos/:id')
        res.send(JSON.stringify(photo));
       });
   });
+
+//PRODUCTS
+router.route('/:id/products')
+.get(function(req, res, next) {
+
+  Product.findAll()
+  .then(function(product){
+     res.send(product);
+  }); 
+  
+  
+});
+
+router.route('/:id/products/create')
+.get(function(req, res, next){
+
+  res.render('/products/create', {title: "GoSpark | Add a product"});
+
+  })
+ .post(function(req, res, next){
+
+
+  Product.create({
+   
+   name: 'beef burger',
+   description: 'descption of beef burger',
+   price: 200,
+   tagline: 'The tagline'
+
+  
+  }).then(product => {
+   res.send(product.toJSON());
+  });
+
+ 
+  });
+  
+  // review_id
+ router.route('/:bid/products/:id')
+ .get(function(req, res, next){
+
+  Product.findById(req.params.id)
+  .then(function(product){
+    res.send(product);  //use this for api testing
+  }); 
+  
+ })
+ .put(function(req, res, next){
+  Product.update({
+   name: 'BIG beef burger',
+   description: 'descption of beef burger edited',
+   price: 400,
+   tagline: 'The tagline changed'
+    
+    },
+    {
+      where: {
+          id : req.params.id
+      }
+    }).then(function(product){
+
+      res.send(JSON.stringify(product));
+
+  });
+
+  })
+
+ .delete(function(req, res, next){
+
+        Product.destroy({
+          where: {
+            id: req.params.id
+          }
+
+    })
+        .then(function(product){
+          res.send(product.toJSON());
+        });
+ });
+
+//LOCATIONS
+
+router.route('/:id/locations')
+.get(function(req, res, next) {
+  Location.findAll({where : { BusinessId : req.params.id }})
+   .then(function(location){
+    res.send(JSON.stringify(location));
+  }); 
+  //res.render('index', { title: 'GoSpark' });
+});
+
+router.route('/:id/locations/create')
+.get( function(req, res, next){
+  res.render('location/create');
+})
+.post(function(req, res, next){
+  Location.create({
+
+    lattitude: 20.13213,
+    longitude : 13.21313,
+    BusinessId: req.params.id
+
+  }).then(location => {
+   res.send(JSON.stringify(location));
+ });
+
+});
+router.route('/:bid/locations/:id')
+.get(function(req, res, next){
+  Location.findAll({where:{ id : req.params.id}})
+  .then(function(location){
+  res.send(JSON.stringify(location));  //use this for api testing
+
+}); ;
+})
+.put(function(req, res, next){
+  Location.update({
+     
+    
+    lattitude: 20.13213,
+    longitude : 13.21313
+    
+    },
+    {
+      where: {
+          BusinessId : req.params.id
+      }
+    }).then(function(location){
+
+      res.send(JSON.stringify(location));
+
+  });
+})
+.delete(function(req, res, next){
+  Location.destroy({
+      where: {
+        id: req.params.id
+      }
+
+    })
+    .then(function(location){
+      res.send(JSON.stringify(location));
+    })
+});
+
 
 module.exports = router;

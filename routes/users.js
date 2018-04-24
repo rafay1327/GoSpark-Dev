@@ -7,7 +7,9 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var db = require('../models');
 var User = db.User;
-
+var Earning = db.Earning;
+var Review = db.Review;
+var Business = db.Business;
 var path = require('path');
 const { URL } = require('url');
 
@@ -64,13 +66,39 @@ router.post('/register', passport.authenticate('local-signup', {
 
 ));
 
+router.get('/:id/dashboard', function(req, res ,next){
 
+});
 
+router.get('/:id/wallet', function(req, res, next){
+  var user, review ,earning;
+  User.findAll({ where : { 
+    id: req.params.id
+  }}).then(function(obj){
+      user = obj;
+  Review.findAll({where : { UserId : req.params.id }})
+  .then(function(obj){
+    review = obj;
+  Earning.findAll({where : { ReviewId : review.id}})
+  .then(function(obj){
+    earning = obj;
+    
+    res.send({earning, user});
+  })
+  })
+
+  });
+
+});
+//STARRED BUSINESSES
+router.get('/:id/starred_businesses', function(req, res, next){
+
+});
   // wishlist_id
- router.route('/:email').
+ router.route('/:id').
  get(function(req, res, next){
 
-  User.findById(req.params.email).then(function(user){
+  User.findById(req.params.id).then(function(user){
     res.send(user);  //use this for api testing
 
   });

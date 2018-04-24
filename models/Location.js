@@ -1,15 +1,15 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Location = sequelize.define('Location', {
-    region: DataTypes.STRING,
-    city: DataTypes.STRING,
-    country: DataTypes.STRING
-  }, {
+    lattitude: DataTypes.FLOAT,
+    longitude: DataTypes.FLOAT
+  }, 
+  {
     timestamps:false
   });
 
    Location.associate = function (models) {
-	  Location.hasMany(models.Store);
+	  Location.belongsTo(models.Business, {foreignKey : { allowNull : false}});
   };
   return Location;
 };

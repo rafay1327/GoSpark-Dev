@@ -11,20 +11,23 @@ module.exports = (sequelize, DataTypes) => {
     opening_days: DataTypes.STRING,
     opening_days: DataTypes.STRING,
     timings: DataTypes.STRING,
-    category_name: DataTypes.STRING
+    isFeatured:DataTypes.BOOLEAN
   });
 
   Business.associate = function (models) {
    Business.hasMany(models.Deal);
    Business.hasMany(models.Review);
    Business.hasMany(models.Store);
-
-
+   Business.hasMany(models.Location);
+   Business.hasMany(models.Photo);
+   
    Business.belongsTo(models.User, { foreignKey: { allowNull: false }});
    Business.belongsTo(models.Membership, { foreignKey: { allowNull: false }});
 
    Business.belongsToMany(models.Tag, { through: 'Business_Tag', as: 'tag' });
-   Business.belongsToMany(models.Photo, {through: 'Business_Photo', as: 'photo'});
+   
+   Business.belongsToMany(models.Category, {through: 'Business_Category', as: 'business'});
+
   };
 
   return Business;
