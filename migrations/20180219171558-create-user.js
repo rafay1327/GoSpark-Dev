@@ -28,6 +28,10 @@ module.exports = {
       date_of_birth: {
         type: Sequelize.DATE
       },
+      device_id:{
+        type: Sequelize.STRING,
+        defaultValue: null
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -36,7 +40,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-
     });
   },
   down: (queryInterface, Sequelize) => {

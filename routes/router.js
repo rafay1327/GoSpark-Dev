@@ -48,8 +48,8 @@ router.route('/create')
 
   Business.create({
 
-    name: 'Test Business 2',
-    description: 'Test business desc',
+    name: 'Gul Ahmed',
+    description: 'bringing u the finest clothes',
     contact_no: '464652348',
     facebook_url: 'www.facebook.com',
     twitter_url: 'www.facebook.com',

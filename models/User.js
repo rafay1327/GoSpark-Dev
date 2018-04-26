@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     password: DataTypes.STRING,
     gender: DataTypes.STRING,
-    date_of_birth: DataTypes.DATE
+    date_of_birth: DataTypes.DATE,
+    device_id: DataTypes.STRING
   }, {
   });
 

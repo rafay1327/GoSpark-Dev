@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql2');
+var Sequelize = require('sequelize');
 
 var db = require('../models');
 var Business = db.Business,
@@ -29,6 +30,21 @@ Review.findAll()
 });
 });
 
+
+router.post('/search/:keywords', function(req, res, next){
+
+	Business.findAll({
+		where:{
+		[Sequelize.Op.or]: [
+      {name:       {[Sequelize.Op.like]: '%' + req.params.keywords + '%'}},
+      {description: {[Sequelize.Op.like]: '%' + req.params.keywords + '%'}},
+    ]
+		}
+	})
+	.then(function(business){
+		res.send(JSON.stringify(business));
+	});
+})
 
 function isLoggedIn(req, res, next) {
 
